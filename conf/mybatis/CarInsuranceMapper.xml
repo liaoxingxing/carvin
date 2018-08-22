@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarInsuranceMapper">
+	     <!-- 结果对应-->
+	<resultMap id="CarInsuranceMap" type="com.carvin.entity.CarInsurance">
+		   <result property="id" column="id" /> <!-- 保险查询表-->
+		   <result property="vincode" column="vincode" /> <!-- vin码-->
+		   <result property="carmodel" column="carmodel" /> <!-- 车型-->
+		   <result property="carengine" column="carengine" /> <!-- 发动机号-->
+		   <result property="carproductdate" column="carproductdate" /> <!-- 生产日期-->
+		   <result property="isoperate" column="isoperate" /> <!-- 是否运营-->
+		   <result property="transfertimes" column="transfertimes" /> <!-- 过户次数-->
+		   <result property="instype" column="instype" /> <!-- 保险类别-->
+		   <result property="instime" column="instime" /> <!-- 理赔年度-->
+		   <result property="insarea" column="insarea" /> <!-- 出险地点-->
+		   <result property="insdesc" column="insdesc" /> <!-- 出险经过-->
+		   <result property="insreason" column="insreason" /> <!-- 出险原因-->
+		   <result property="insbody" column="insbody" /> <!-- 受损部位-->
+		   <result property="insprice" column="insprice" /> <!-- 理赔金额-->
+		   <result property="createtime" column="createtime" /> <!-- -->
+	</resultMap>
+	
+	
+	<sql id="CarInsuranceColumns">
+		  id, vincode, carmodel, carengine, carproductdate, isoperate, transfertimes, instype, instime, insarea, insdesc, insreason, insbody, insprice, createtime
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarInsurance" resultMap="CarInsuranceMap" 
+	parameterType="com.carvin.entity.CarInsurance">
+		select
+		<include refid="CarInsuranceColumns" />
+		from car_insurance 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="vincode !=null and vincode!=''">
+			           and vincode=#{vincode}
+			      </if>
+                  <if test="carmodel !=null and carmodel!=''">
+			           and carmodel=#{carmodel}
+			      </if>
+                  <if test="carengine !=null and carengine!=''">
+			           and carengine=#{carengine}
+			      </if>
+                  <if test="carproductdate !=null and carproductdate!=''">
+			           and carproductdate=#{carproductdate}
+			      </if>
+                  <if test="isoperate !=null and isoperate!=''">
+			           and isoperate=#{isoperate}
+			      </if>
+                  <if test="transfertimes !=null">
+			           and transfertimes=#{transfertimes}
+			      </if>
+                  <if test="instype !=null and instype!=''">
+			           and instype=#{instype}
+			      </if>
+                  <if test="instime !=null and instime!=''">
+			           and instime=#{instime}
+			      </if>
+                  <if test="insarea !=null and insarea!=''">
+			           and insarea=#{insarea}
+			      </if>
+                  <if test="insdesc !=null and insdesc!=''">
+			           and insdesc=#{insdesc}
+			      </if>
+                  <if test="insreason !=null and insreason!=''">
+			           and insreason=#{insreason}
+			      </if>
+                  <if test="insbody !=null and insbody!=''">
+			           and insbody=#{insbody}
+			      </if>
+                  <if test="insprice !=null and insprice!=''">
+			           and insprice=#{insprice}
+			      </if>
+                  <if test="createtime !=null and createtime!=''">
+			           and createtime=#{createtime}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_insurance的数量-->
+	<select id="getCarInsuranceCount" resultType="Integer">
+		select count(*)
+		from car_insurance
+	</select>
+	
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarInsurance" useGeneratedKeys="true" keyProperty="id">
+		insert into car_insurance
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="vincode !=null and vincode!=''">
+		      vincode,
+		    </if>
+                  <if test="carmodel !=null and carmodel!=''">
+		      carmodel,
+		    </if>
+                  <if test="carengine !=null and carengine!=''">
+		      carengine,
+		    </if>
+                  <if test="carproductdate !=null and carproductdate!=''">
+		      carproductdate,
+		    </if>
+                  <if test="isoperate !=null and isoperate!=''">
+		      isoperate,
+		    </if>
+                  <if test="transfertimes !=null">
+		      transfertimes,
+		    </if>
+                  <if test="instype !=null and instype!=''">
+		      instype,
+		    </if>
+                  <if test="instime !=null and instime!=''">
+		      instime,
+		    </if>
+                  <if test="insarea !=null and insarea!=''">
+		      insarea,
+		    </if>
+                  <if test="insdesc !=null and insdesc!=''">
+		      insdesc,
+		    </if>
+                  <if test="insreason !=null and insreason!=''">
+		      insreason,
+		    </if>
+                  <if test="insbody !=null and insbody!=''">
+		      insbody,
+		    </if>
+                  <if test="insprice !=null and insprice!=''">
+		      insprice,
+		    </if>
+                  <if test="createtime !=null and createtime!=''">
+		      createtime,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		    <if test="vincode !=null and vincode!=''">
+		     #{vincode},
+		    </if>
+		    <if test="carmodel !=null and carmodel!=''">
+		     #{carmodel},
+		    </if>
+		    <if test="carengine !=null and carengine!=''">
+		     #{carengine},
+		    </if>
+		    <if test="carproductdate !=null and carproductdate!=''">
+		     #{carproductdate},
+		    </if>
+		    <if test="isoperate !=null and isoperate!=''">
+		     #{isoperate},
+		    </if>
+		     <if test="transfertimes !=null">
+		     #{transfertimes},
+		    </if>
+		    <if test="instype !=null and instype!=''">
+		     #{instype},
+		    </if>
+		    <if test="instime !=null and instime!=''">
+		     #{instime},
+		    </if>
+		    <if test="insarea !=null and insarea!=''">
+		     #{insarea},
+		    </if>
+		    <if test="insdesc !=null and insdesc!=''">
+		     #{insdesc},
+		    </if>
+		    <if test="insreason !=null and insreason!=''">
+		     #{insreason},
+		    </if>
+		    <if test="insbody !=null and insbody!=''">
+		     #{insbody},
+		    </if>
+		    <if test="insprice !=null and insprice!=''">
+		     #{insprice},
+		    </if>
+		    <if test="createtime !=null and createtime!=''">
+		     #{createtime},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarInsuranceById" parameterType="Integer" resultMap="CarInsuranceMap">
+		select 
+		<include refid="CarInsuranceColumns" /> 
+		from car_insurance where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 car_insurance  -->
+	<select id="listCarInsurance" resultMap="CarInsuranceMap" parameterType="com.carvin.entity.CarInsurance">
+		select
+		<include refid="CarInsuranceColumns" />
+		from car_insurance 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="vincode !=null and vincode!=''">
+				and vincode=#{vincode}
+			</if>
+                  <if test="carmodel !=null and carmodel!=''">
+				and carmodel=#{carmodel}
+			</if>
+                  <if test="carengine !=null and carengine!=''">
+				and carengine=#{carengine}
+			</if>
+                  <if test="carproductdate !=null and carproductdate!=''">
+				and carproductdate=#{carproductdate}
+			</if>
+                  <if test="isoperate !=null and isoperate!=''">
+				and isoperate=#{isoperate}
+			</if>
+                  <if test="transfertimes !=null">
+				and transfertimes=#{transfertimes}
+			</if>
+                  <if test="instype !=null and instype!=''">
+				and instype=#{instype}
+			</if>
+                  <if test="instime !=null and instime!=''">
+				and instime=#{instime}
+			</if>
+                  <if test="insarea !=null and insarea!=''">
+				and insarea=#{insarea}
+			</if>
+                  <if test="insdesc !=null and insdesc!=''">
+				and insdesc=#{insdesc}
+			</if>
+                  <if test="insreason !=null and insreason!=''">
+				and insreason=#{insreason}
+			</if>
+                  <if test="insbody !=null and insbody!=''">
+				and insbody=#{insbody}
+			</if>
+                  <if test="insprice !=null and insprice!=''">
+				and insprice=#{insprice}
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+				and createtime=#{createtime}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarInsurance" parameterType="com.carvin.entity.CarInsurance">
+		UPDATE car_insurance 
+		SET
+		id=#{id}, vincode=#{vincode}, carmodel=#{carmodel}, carengine=#{carengine}, carproductdate=#{carproductdate}, isoperate=#{isoperate}, transfertimes=#{transfertimes}, instype=#{instype}, instime=#{instime}, insarea=#{insarea}, insdesc=#{insdesc}, insreason=#{insreason}, insbody=#{insbody}, insprice=#{insprice}, createtime=#{createtime}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarInsurance" >
+	  UPDATE car_insurance 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="vincode !=null and vincode!=''">
+			    vincode =  #{vincode},
+			</if>
+                  <if test="carmodel !=null and carmodel!=''">
+			    carmodel =  #{carmodel},
+			</if>
+                  <if test="carengine !=null and carengine!=''">
+			    carengine =  #{carengine},
+			</if>
+                  <if test="carproductdate !=null and carproductdate!=''">
+			    carproductdate =  #{carproductdate},
+			</if>
+                  <if test="isoperate !=null and isoperate!=''">
+			    isoperate =  #{isoperate},
+			</if>
+                  <if test="transfertimes !=null">
+			    transfertimes =  #{transfertimes},
+			</if>
+                  <if test="instype !=null and instype!=''">
+			    instype =  #{instype},
+			</if>
+                  <if test="instime !=null and instime!=''">
+			    instime =  #{instime},
+			</if>
+                  <if test="insarea !=null and insarea!=''">
+			    insarea =  #{insarea},
+			</if>
+                  <if test="insdesc !=null and insdesc!=''">
+			    insdesc =  #{insdesc},
+			</if>
+                  <if test="insreason !=null and insreason!=''">
+			    insreason =  #{insreason},
+			</if>
+                  <if test="insbody !=null and insbody!=''">
+			    insbody =  #{insbody},
+			</if>
+                  <if test="insprice !=null and insprice!=''">
+			    insprice =  #{insprice},
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+			    createtime =  #{createtime},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarInsurance" parameterType="com.carvin.entity.CarInsurance">
+		delete from car_insurance 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="vincode !=null and vincode!=''">
+				and vincode =  #{vincode}
+			</if>
+                  <if test="carmodel !=null and carmodel!=''">
+				and carmodel =  #{carmodel}
+			</if>
+                  <if test="carengine !=null and carengine!=''">
+				and carengine =  #{carengine}
+			</if>
+                  <if test="carproductdate !=null and carproductdate!=''">
+				and carproductdate =  #{carproductdate}
+			</if>
+                  <if test="isoperate !=null and isoperate!=''">
+				and isoperate =  #{isoperate}
+			</if>
+                  <if test="transfertimes !=null">
+				and transfertimes =  #{transfertimes}
+			</if>
+                  <if test="instype !=null and instype!=''">
+				and instype =  #{instype}
+			</if>
+                  <if test="instime !=null and instime!=''">
+				and instime =  #{instime}
+			</if>
+                  <if test="insarea !=null and insarea!=''">
+				and insarea =  #{insarea}
+			</if>
+                  <if test="insdesc !=null and insdesc!=''">
+				and insdesc =  #{insdesc}
+			</if>
+                  <if test="insreason !=null and insreason!=''">
+				and insreason =  #{insreason}
+			</if>
+                  <if test="insbody !=null and insbody!=''">
+				and insbody =  #{insbody}
+			</if>
+                  <if test="insprice !=null and insprice!=''">
+				and insprice =  #{insprice}
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+				and createtime =  #{createtime}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

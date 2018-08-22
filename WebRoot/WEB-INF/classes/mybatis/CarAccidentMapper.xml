@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarAccidentMapper">
+	     <!-- 结果对应-->					
+	<resultMap id="CarAccidentMap" type="com.carvin.entity.CarAccident">
+		   <result property="id" column="id" /> <!-- -->
+		   <result property="carmodel" column="carmodel" /> <!-- 车辆型号-->
+		   <result property="vincode" column="vincode" /> <!-- vin码-->
+		   <result property="accidcity" column="accidcity" /> <!-- 事故地点（城市）-->
+		   <result property="firstcreatdate" column="firstcreatdate" /> <!-- 初次登记日期-->
+		   <result property="isvindamaged" column="isvindamaged" /> <!-- 车架号是否受损-->
+		   <result property="accidimg" column="accidimg" /> <!-- 车辆图片（多图）-->
+		   <result property="remark" column="remark" /> <!-- 备注-->
+		   <result property="carcode" column="carcode" /> <!-- 编号-->
+		   <result property="acciddate" column="acciddate" /> <!-- 出险时间-->
+		   <result property="stopadress" column="stopadress" /> <!-- 车辆停放地区-->
+		   <result property="enginestatus" column="enginestatus" /> <!-- 发动机状态-->
+		   <result property="gearboxstatus" column="gearboxstatus" /> <!-- 变速箱状态-->
+		   <result property="isdisassembly" column="isdisassembly" /> <!-- 是否拆解-->
+		   <result property="carresouse" column="carresouse" /> <!-- 车辆来源-->
+		   <result property="cartype" column="cartype" /> <!-- 车辆类型-->
+		   <result property="accidtype" column="accidtype" /> <!-- 事故类型-->
+		   <result property="detailpage" column="detailpage" /> <!-- 详情页面-->
+	</resultMap>
+	
+	
+	<sql id="CarAccidentColumns">
+		  id, carmodel, vincode, accidcity, firstcreatdate, isvindamaged, accidimg, remark, carcode, acciddate, stopadress, enginestatus, gearboxstatus, isdisassembly, carresouse, cartype, accidtype, detailpage
+    </sql>
+	
+	
+	<select id="getCarAccident" resultMap="CarAccidentMap" parameterType="com.carvin.entity.CarAccident">
+		select <include refid="CarAccidentColumns" />
+		from car_accident where locate(vincode,#{vincode}) 
+	</select>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarAccident" resultMap="CarAccidentMap" 
+	parameterType="com.carvin.entity.CarAccident">
+		select
+		<include refid="CarAccidentColumns" />
+		from car_accident 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="carmodel !=null and carmodel!=''">
+			           and carmodel=#{carmodel}
+			      </if>
+                  <if test="vincode !=null and vincode!=''">
+			           and vincode=#{vincode}
+			      </if>
+                  <if test="accidcity !=null and accidcity!=''">
+			           and accidcity=#{accidcity}
+			      </if>
+                  <if test="firstcreatdate !=null and firstcreatdate!=''">
+			           and firstcreatdate=#{firstcreatdate}
+			      </if>
+                  <if test="isvindamaged !=null and isvindamaged!=''">
+			           and isvindamaged=#{isvindamaged}
+			      </if>
+                  <if test="accidimg !=null and accidimg!=''">
+			           and accidimg=#{accidimg}
+			      </if>
+                  <if test="remark !=null and remark!=''">
+			           and remark=#{remark}
+			      </if>
+                  <if test="carcode !=null and carcode!=''">
+			           and carcode=#{carcode}
+			      </if>
+                  <if test="acciddate !=null and acciddate!=''">
+			           and acciddate=#{acciddate}
+			      </if>
+                  <if test="stopadress !=null and stopadress!=''">
+			           and stopadress=#{stopadress}
+			      </if>
+                  <if test="enginestatus !=null and enginestatus!=''">
+			           and enginestatus=#{enginestatus}
+			      </if>
+                  <if test="gearboxstatus !=null and gearboxstatus!=''">
+			           and gearboxstatus=#{gearboxstatus}
+			      </if>
+                  <if test="isdisassembly !=null and isdisassembly!=''">
+			           and isdisassembly=#{isdisassembly}
+			      </if>
+                  <if test="carresouse !=null and carresouse!=''">
+			           and carresouse=#{carresouse}
+			      </if>
+                  <if test="cartype !=null and cartype!=''">
+			           and cartype=#{cartype}
+			      </if>
+                  <if test="accidtype !=null and accidtype!=''">
+			           and accidtype=#{accidtype}
+			      </if>
+                  <if test="detailpage !=null and detailpage!=''">
+			           and detailpage=#{detailpage}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_accident的数量-->
+	<select id="getCarAccidentCount" resultType="Integer">
+		select count(*)
+		from car_accident
+	</select>
+	
+	<!-- 插入 -->
+	<insert id="insert" parameterType="com.carvin.entity.CarAccident" 
+	  useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO car_accident (
+			carmodel, vincode, accidcity, firstcreatdate, isvindamaged, accidimg, remark, carcode, acciddate, stopadress, enginestatus, gearboxstatus, isdisassembly, carresouse, cartype, accidtype, detailpage
+		) VALUES (
+			#{carmodel}, #{vincode}, #{accidcity}, #{firstcreatdate}, #{isvindamaged}, #{accidimg}, #{remark}, #{carcode}, #{acciddate}, #{stopadress}, #{enginestatus}, #{gearboxstatus}, #{isdisassembly}, #{carresouse}, #{cartype}, #{accidtype}, #{detailpage}
+		)
+	</insert>
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarAccident" useGeneratedKeys="true" keyProperty="id">
+		insert into car_accident
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="carmodel !=null and carmodel!=''">
+		      carmodel,
+		    </if>
+                  <if test="vincode !=null and vincode!=''">
+		      vincode,
+		    </if>
+                  <if test="accidcity !=null and accidcity!=''">
+		      accidcity,
+		    </if>
+                  <if test="firstcreatdate !=null and firstcreatdate!=''">
+		      firstcreatdate,
+		    </if>
+                  <if test="isvindamaged !=null and isvindamaged!=''">
+		      isvindamaged,
+		    </if>
+                  <if test="accidimg !=null and accidimg!=''">
+		      accidimg,
+		    </if>
+                  <if test="remark !=null and remark!=''">
+		      remark,
+		    </if>
+                  <if test="carcode !=null and carcode!=''">
+		      carcode,
+		    </if>
+                  <if test="acciddate !=null and acciddate!=''">
+		      acciddate,
+		    </if>
+                  <if test="stopadress !=null and stopadress!=''">
+		      stopadress,
+		    </if>
+                  <if test="enginestatus !=null and enginestatus!=''">
+		      enginestatus,
+		    </if>
+                  <if test="gearboxstatus !=null and gearboxstatus!=''">
+		      gearboxstatus,
+		    </if>
+                  <if test="isdisassembly !=null and isdisassembly!=''">
+		      isdisassembly,
+		    </if>
+                  <if test="carresouse !=null and carresouse!=''">
+		      carresouse,
+		    </if>
+                  <if test="cartype !=null and cartype!=''">
+		      cartype,
+		    </if>
+                  <if test="accidtype !=null and accidtype!=''">
+		      accidtype,
+		    </if>
+                  <if test="detailpage !=null and detailpage!=''">
+		      detailpage,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		    <if test="carmodel !=null and carmodel!=''">
+		     #{carmodel},
+		    </if>
+		    <if test="vincode !=null and vincode!=''">
+		     #{vincode},
+		    </if>
+		    <if test="accidcity !=null and accidcity!=''">
+		     #{accidcity},
+		    </if>
+		    <if test="firstcreatdate !=null and firstcreatdate!=''">
+		     #{firstcreatdate},
+		    </if>
+		    <if test="isvindamaged !=null and isvindamaged!=''">
+		     #{isvindamaged},
+		    </if>
+		    <if test="accidimg !=null and accidimg!=''">
+		     #{accidimg},
+		    </if>
+		    <if test="remark !=null and remark!=''">
+		     #{remark},
+		    </if>
+		    <if test="carcode !=null and carcode!=''">
+		     #{carcode},
+		    </if>
+		    <if test="acciddate !=null and acciddate!=''">
+		     #{acciddate},
+		    </if>
+		    <if test="stopadress !=null and stopadress!=''">
+		     #{stopadress},
+		    </if>
+		    <if test="enginestatus !=null and enginestatus!=''">
+		     #{enginestatus},
+		    </if>
+		    <if test="gearboxstatus !=null and gearboxstatus!=''">
+		     #{gearboxstatus},
+		    </if>
+		    <if test="isdisassembly !=null and isdisassembly!=''">
+		     #{isdisassembly},
+		    </if>
+		    <if test="carresouse !=null and carresouse!=''">
+		     #{carresouse},
+		    </if>
+		    <if test="cartype !=null and cartype!=''">
+		     #{cartype},
+		    </if>
+		    <if test="accidtype !=null and accidtype!=''">
+		     #{accidtype},
+		    </if>
+		    <if test="detailpage !=null and detailpage!=''">
+		     #{detailpage},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarAccidentById" parameterType="Integer" resultMap="CarAccidentMap">
+		select 
+		<include refid="CarAccidentColumns" /> 
+		from car_accident where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 car_accident  -->
+	<select id="listCarAccident" resultMap="CarAccidentMap" parameterType="com.carvin.entity.CarAccident">
+		select
+		<include refid="CarAccidentColumns" />
+		from car_accident 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="carmodel !=null and carmodel!=''">
+				and carmodel=#{carmodel}
+			</if>
+                  <if test="vincode !=null and vincode!=''">
+				and vincode=#{vincode}
+			</if>
+                  <if test="accidcity !=null and accidcity!=''">
+				and accidcity=#{accidcity}
+			</if>
+                  <if test="firstcreatdate !=null and firstcreatdate!=''">
+				and firstcreatdate=#{firstcreatdate}
+			</if>
+                  <if test="isvindamaged !=null and isvindamaged!=''">
+				and isvindamaged=#{isvindamaged}
+			</if>
+                  <if test="accidimg !=null and accidimg!=''">
+				and accidimg=#{accidimg}
+			</if>
+                  <if test="remark !=null and remark!=''">
+				and remark=#{remark}
+			</if>
+                  <if test="carcode !=null and carcode!=''">
+				and carcode=#{carcode}
+			</if>
+                  <if test="acciddate !=null and acciddate!=''">
+				and acciddate=#{acciddate}
+			</if>
+                  <if test="stopadress !=null and stopadress!=''">
+				and stopadress=#{stopadress}
+			</if>
+                  <if test="enginestatus !=null and enginestatus!=''">
+				and enginestatus=#{enginestatus}
+			</if>
+                  <if test="gearboxstatus !=null and gearboxstatus!=''">
+				and gearboxstatus=#{gearboxstatus}
+			</if>
+                  <if test="isdisassembly !=null and isdisassembly!=''">
+				and isdisassembly=#{isdisassembly}
+			</if>
+                  <if test="carresouse !=null and carresouse!=''">
+				and carresouse=#{carresouse}
+			</if>
+                  <if test="cartype !=null and cartype!=''">
+				and cartype=#{cartype}
+			</if>
+                  <if test="accidtype !=null and accidtype!=''">
+				and accidtype=#{accidtype}
+			</if>
+                  <if test="detailpage !=null and detailpage!=''">
+				and detailpage=#{detailpage}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarAccident" parameterType="com.carvin.entity.CarAccident">
+		UPDATE car_accident 
+		SET
+		id=#{id}, carmodel=#{carmodel}, vincode=#{vincode}, accidcity=#{accidcity}, firstcreatdate=#{firstcreatdate}, isvindamaged=#{isvindamaged}, accidimg=#{accidimg}, remark=#{remark}, carcode=#{carcode}, acciddate=#{acciddate}, stopadress=#{stopadress}, enginestatus=#{enginestatus}, gearboxstatus=#{gearboxstatus}, isdisassembly=#{isdisassembly}, carresouse=#{carresouse}, cartype=#{cartype}, accidtype=#{accidtype}, detailpage=#{detailpage}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarAccident" >
+	  UPDATE car_accident 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="carmodel !=null and carmodel!=''">
+			    carmodel =  #{carmodel},
+			</if>
+                  <if test="vincode !=null and vincode!=''">
+			    vincode =  #{vincode},
+			</if>
+                  <if test="accidcity !=null and accidcity!=''">
+			    accidcity =  #{accidcity},
+			</if>
+                  <if test="firstcreatdate !=null and firstcreatdate!=''">
+			    firstcreatdate =  #{firstcreatdate},
+			</if>
+                  <if test="isvindamaged !=null and isvindamaged!=''">
+			    isvindamaged =  #{isvindamaged},
+			</if>
+                  <if test="accidimg !=null and accidimg!=''">
+			    accidimg =  #{accidimg},
+			</if>
+                  <if test="remark !=null and remark!=''">
+			    remark =  #{remark},
+			</if>
+                  <if test="carcode !=null and carcode!=''">
+			    carcode =  #{carcode},
+			</if>
+                  <if test="acciddate !=null and acciddate!=''">
+			    acciddate =  #{acciddate},
+			</if>
+                  <if test="stopadress !=null and stopadress!=''">
+			    stopadress =  #{stopadress},
+			</if>
+                  <if test="enginestatus !=null and enginestatus!=''">
+			    enginestatus =  #{enginestatus},
+			</if>
+                  <if test="gearboxstatus !=null and gearboxstatus!=''">
+			    gearboxstatus =  #{gearboxstatus},
+			</if>
+                  <if test="isdisassembly !=null and isdisassembly!=''">
+			    isdisassembly =  #{isdisassembly},
+			</if>
+                  <if test="carresouse !=null and carresouse!=''">
+			    carresouse =  #{carresouse},
+			</if>
+                  <if test="cartype !=null and cartype!=''">
+			    cartype =  #{cartype},
+			</if>
+                  <if test="accidtype !=null and accidtype!=''">
+			    accidtype =  #{accidtype},
+			</if>
+                  <if test="detailpage !=null and detailpage!=''">
+			    detailpage =  #{detailpage},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarAccident" parameterType="com.carvin.entity.CarAccident">
+		delete from car_accident 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="carmodel !=null and carmodel!=''">
+				and carmodel =  #{carmodel}
+			</if>
+                  <if test="vincode !=null and vincode!=''">
+				and vincode =  #{vincode}
+			</if>
+                  <if test="accidcity !=null and accidcity!=''">
+				and accidcity =  #{accidcity}
+			</if>
+                  <if test="firstcreatdate !=null and firstcreatdate!=''">
+				and firstcreatdate =  #{firstcreatdate}
+			</if>
+                  <if test="isvindamaged !=null and isvindamaged!=''">
+				and isvindamaged =  #{isvindamaged}
+			</if>
+                  <if test="accidimg !=null and accidimg!=''">
+				and accidimg =  #{accidimg}
+			</if>
+                  <if test="remark !=null and remark!=''">
+				and remark =  #{remark}
+			</if>
+                  <if test="carcode !=null and carcode!=''">
+				and carcode =  #{carcode}
+			</if>
+                  <if test="acciddate !=null and acciddate!=''">
+				and acciddate =  #{acciddate}
+			</if>
+                  <if test="stopadress !=null and stopadress!=''">
+				and stopadress =  #{stopadress}
+			</if>
+                  <if test="enginestatus !=null and enginestatus!=''">
+				and enginestatus =  #{enginestatus}
+			</if>
+                  <if test="gearboxstatus !=null and gearboxstatus!=''">
+				and gearboxstatus =  #{gearboxstatus}
+			</if>
+                  <if test="isdisassembly !=null and isdisassembly!=''">
+				and isdisassembly =  #{isdisassembly}
+			</if>
+                  <if test="carresouse !=null and carresouse!=''">
+				and carresouse =  #{carresouse}
+			</if>
+                  <if test="cartype !=null and cartype!=''">
+				and cartype =  #{cartype}
+			</if>
+                  <if test="accidtype !=null and accidtype!=''">
+				and accidtype =  #{accidtype}
+			</if>
+                  <if test="detailpage !=null and detailpage!=''">
+				and detailpage =  #{detailpage}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

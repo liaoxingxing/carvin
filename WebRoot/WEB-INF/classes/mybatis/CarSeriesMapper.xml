@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarSeriesMapper">
+	     <!-- 结果对应-->
+	<resultMap id="CarSeriesMap" type="com.carvin.entity.CarSeries">
+		   <result property="id" column="id" /> <!-- 是否已删除-->
+		   <result property="brandId" column="brand_id" /> <!-- 品牌id-->
+		   <result property="mfrsId" column="mfrs_id" /> <!-- 厂商id-->
+		   <result property="name" column="name" /> <!-- 车系名称-->
+		   <result property="nameRuleS" column="name_rule_s" /> <!-- 该车系车源名称显示规则-->
+		   <result property="nameRuleM" column="name_rule_m" /> <!-- -->
+		   <result property="nameRuleL" column="name_rule_l" /> <!-- -->
+		   <result property="fullname" column="fullname" /> <!-- 车系全称-->
+		   <result property="ename" column="ename" /> <!-- 英文名-->
+		   <result property="pinyin" column="pinyin" /> <!-- 拼音-->
+		   <result property="pinyinOld" column="pinyin_old" /> <!-- -->
+		   <result property="alias" column="alias" /> <!-- 别名-->
+		   <result property="releaseDate" column="release_date" /> <!-- 发布日期-->
+		   <result property="launchDate" column="launch_date" /> <!-- 上市日期-->
+		   <result property="stopDate" column="stop_date" /> <!-- 停产日期-->
+		   <result property="levelId" column="level_id" /> <!-- 级别id-->
+		   <result property="photo" column="photo" /> <!-- 默认图片-->
+		   <result property="intro" column="intro" /> <!-- 简介-->
+		   <result property="officialUrl" column="official_url" /> <!-- 官方网站URL-->
+		   <result property="updateUserId" column="update_user_id" /> <!-- 更新用户id-->
+		   <result property="updateTime" column="update_time" /> <!-- -->
+		   <result property="createTime" column="create_time" /> <!-- -->
+		   <result property="image" column="image" /> <!-- 车系图片-->
+		   <result property="isShow" column="is_show" /> <!-- 是否显示 1 yes-->
+		   <result property="heat" column="heat" /> <!-- 热度-->
+		   <result property="isdel" column="isdel" /> <!-- 是否已删除0no 1yes-->
+		   <result property="iautosName" column="iautos_name" /> <!-- -->
+		   <result property="iautosPyItl" column="iautos_py_itl" /> <!-- -->
+		   <result property="iautosPy" column="iautos_py" /> <!-- -->
+		   <result property="reviseTime" column="revise_time" /> <!-- 车虫网更新时间-->
+	</resultMap>
+	
+	
+	<sql id="CarSeriesColumns">
+		  id, brand_id, mfrs_id, name, name_rule_s, name_rule_m, name_rule_l, fullname, ename, pinyin, pinyin_old, alias, release_date, launch_date, stop_date, level_id, photo, intro, official_url, update_user_id, update_time, create_time, image, is_show, heat, isdel, iautos_name, iautos_py_itl, iautos_py, revise_time
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarSeries" resultMap="CarSeriesMap" 
+	parameterType="com.carvin.entity.CarSeries">
+		select
+		<include refid="CarSeriesColumns" />
+		from car_series 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="brandId !=null">
+			           and brand_id=#{brandId}
+			      </if>
+                  <if test="mfrsId !=null">
+			           and mfrs_id=#{mfrsId}
+			      </if>
+                  <if test="name !=null and name!=''">
+			           and name=#{name}
+			      </if>
+                  <if test="nameRuleS !=null and nameRuleS!=''">
+			           and name_rule_s=#{nameRuleS}
+			      </if>
+                  <if test="nameRuleM !=null and nameRuleM!=''">
+			           and name_rule_m=#{nameRuleM}
+			      </if>
+                  <if test="nameRuleL !=null and nameRuleL!=''">
+			           and name_rule_l=#{nameRuleL}
+			      </if>
+                  <if test="fullname !=null and fullname!=''">
+			           and fullname=#{fullname}
+			      </if>
+                  <if test="ename !=null and ename!=''">
+			           and ename=#{ename}
+			      </if>
+                  <if test="pinyin !=null and pinyin!=''">
+			           and pinyin=#{pinyin}
+			      </if>
+                  <if test="pinyinOld !=null and pinyinOld!=''">
+			           and pinyin_old=#{pinyinOld}
+			      </if>
+                  <if test="alias !=null and alias!=''">
+			           and alias=#{alias}
+			      </if>
+                  <if test="releaseDate !=null and releaseDate!=''">
+			           and release_date=#{releaseDate}
+			      </if>
+                  <if test="launchDate !=null and launchDate!=''">
+			           and launch_date=#{launchDate}
+			      </if>
+                  <if test="stopDate !=null and stopDate!=''">
+			           and stop_date=#{stopDate}
+			      </if>
+                  <if test="levelId !=null">
+			           and level_id=#{levelId}
+			      </if>
+                  <if test="photo !=null and photo!=''">
+			           and photo=#{photo}
+			      </if>
+                  <if test="intro !=null and intro!=''">
+			           and intro=#{intro}
+			      </if>
+                  <if test="officialUrl !=null and officialUrl!=''">
+			           and official_url=#{officialUrl}
+			      </if>
+                  <if test="updateUserId !=null">
+			           and update_user_id=#{updateUserId}
+			      </if>
+                  <if test="updateTime !=null and updateTime!=''">
+			           and update_time=#{updateTime}
+			      </if>
+                  <if test="createTime !=null and createTime!=''">
+			           and create_time=#{createTime}
+			      </if>
+                  <if test="image !=null and image!=''">
+			           and image=#{image}
+			      </if>
+                  <if test="isShow !=null">
+			           and is_show=#{isShow}
+			      </if>
+                  <if test="heat !=null">
+			           and heat=#{heat}
+			      </if>
+                  <if test="isdel !=null">
+			           and isdel=#{isdel}
+			      </if>
+                  <if test="iautosName !=null and iautosName!=''">
+			           and iautos_name=#{iautosName}
+			      </if>
+                  <if test="iautosPyItl !=null and iautosPyItl!=''">
+			           and iautos_py_itl=#{iautosPyItl}
+			      </if>
+                  <if test="iautosPy !=null and iautosPy!=''">
+			           and iautos_py=#{iautosPy}
+			      </if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+			           and revise_time=#{reviseTime}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_series的数量-->
+	<select id="getCarSeriesCount" resultType="Integer">
+		select count(*)
+		from car_series
+	</select>
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarSeries" useGeneratedKeys="true" keyProperty="id">
+		insert into car_series
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="brandId !=null">
+		      brand_id,
+		    </if>
+                  <if test="mfrsId !=null">
+		      mfrs_id,
+		    </if>
+                  <if test="name !=null and name!=''">
+		      name,
+		    </if>
+                  <if test="nameRuleS !=null and nameRuleS!=''">
+		      name_rule_s,
+		    </if>
+                  <if test="nameRuleM !=null and nameRuleM!=''">
+		      name_rule_m,
+		    </if>
+                  <if test="nameRuleL !=null and nameRuleL!=''">
+		      name_rule_l,
+		    </if>
+                  <if test="fullname !=null and fullname!=''">
+		      fullname,
+		    </if>
+                  <if test="ename !=null and ename!=''">
+		      ename,
+		    </if>
+                  <if test="pinyin !=null and pinyin!=''">
+		      pinyin,
+		    </if>
+                  <if test="pinyinOld !=null and pinyinOld!=''">
+		      pinyin_old,
+		    </if>
+                  <if test="alias !=null and alias!=''">
+		      alias,
+		    </if>
+                  <if test="releaseDate !=null and releaseDate!=''">
+		      release_date,
+		    </if>
+                  <if test="launchDate !=null and launchDate!=''">
+		      launch_date,
+		    </if>
+                  <if test="stopDate !=null and stopDate!=''">
+		      stop_date,
+		    </if>
+                  <if test="levelId !=null">
+		      level_id,
+		    </if>
+                  <if test="photo !=null and photo!=''">
+		      photo,
+		    </if>
+                  <if test="intro !=null and intro!=''">
+		      intro,
+		    </if>
+                  <if test="officialUrl !=null and officialUrl!=''">
+		      official_url,
+		    </if>
+                  <if test="updateUserId !=null">
+		      update_user_id,
+		    </if>
+                  <if test="updateTime !=null and updateTime!=''">
+		      update_time,
+		    </if>
+                  <if test="createTime !=null and createTime!=''">
+		      create_time,
+		    </if>
+                  <if test="image !=null and image!=''">
+		      image,
+		    </if>
+                  <if test="isShow !=null">
+		      is_show,
+		    </if>
+                  <if test="heat !=null">
+		      heat,
+		    </if>
+                  <if test="isdel !=null">
+		      isdel,
+		    </if>
+                  <if test="iautosName !=null and iautosName!=''">
+		      iautos_name,
+		    </if>
+                  <if test="iautosPyItl !=null and iautosPyItl!=''">
+		      iautos_py_itl,
+		    </if>
+                  <if test="iautosPy !=null and iautosPy!=''">
+		      iautos_py,
+		    </if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+		      revise_time,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		     <if test="brandId !=null">
+		     #{brandId},
+		    </if>
+		     <if test="mfrsId !=null">
+		     #{mfrsId},
+		    </if>
+		    <if test="name !=null and name!=''">
+		     #{name},
+		    </if>
+		    <if test="nameRuleS !=null and nameRuleS!=''">
+		     #{nameRuleS},
+		    </if>
+		    <if test="nameRuleM !=null and nameRuleM!=''">
+		     #{nameRuleM},
+		    </if>
+		    <if test="nameRuleL !=null and nameRuleL!=''">
+		     #{nameRuleL},
+		    </if>
+		    <if test="fullname !=null and fullname!=''">
+		     #{fullname},
+		    </if>
+		    <if test="ename !=null and ename!=''">
+		     #{ename},
+		    </if>
+		    <if test="pinyin !=null and pinyin!=''">
+		     #{pinyin},
+		    </if>
+		    <if test="pinyinOld !=null and pinyinOld!=''">
+		     #{pinyinOld},
+		    </if>
+		    <if test="alias !=null and alias!=''">
+		     #{alias},
+		    </if>
+		    <if test="releaseDate !=null and releaseDate!=''">
+		     #{releaseDate},
+		    </if>
+		    <if test="launchDate !=null and launchDate!=''">
+		     #{launchDate},
+		    </if>
+		    <if test="stopDate !=null and stopDate!=''">
+		     #{stopDate},
+		    </if>
+		     <if test="levelId !=null">
+		     #{levelId},
+		    </if>
+		    <if test="photo !=null and photo!=''">
+		     #{photo},
+		    </if>
+		    <if test="intro !=null and intro!=''">
+		     #{intro},
+		    </if>
+		    <if test="officialUrl !=null and officialUrl!=''">
+		     #{officialUrl},
+		    </if>
+		     <if test="updateUserId !=null">
+		     #{updateUserId},
+		    </if>
+		    <if test="updateTime !=null and updateTime!=''">
+		     #{updateTime},
+		    </if>
+		    <if test="createTime !=null and createTime!=''">
+		     #{createTime},
+		    </if>
+		    <if test="image !=null and image!=''">
+		     #{image},
+		    </if>
+		     <if test="isShow !=null">
+		     #{isShow},
+		    </if>
+		     <if test="heat !=null">
+		     #{heat},
+		    </if>
+		     <if test="isdel !=null">
+		     #{isdel},
+		    </if>
+		    <if test="iautosName !=null and iautosName!=''">
+		     #{iautosName},
+		    </if>
+		    <if test="iautosPyItl !=null and iautosPyItl!=''">
+		     #{iautosPyItl},
+		    </if>
+		    <if test="iautosPy !=null and iautosPy!=''">
+		     #{iautosPy},
+		    </if>
+		    <if test="reviseTime !=null and reviseTime!=''">
+		     #{reviseTime},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarSeriesById" parameterType="Integer" resultMap="CarSeriesMap">
+		select 
+		<include refid="CarSeriesColumns" /> 
+		from car_series where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 car_series  -->
+	<select id="listCarSeries" resultMap="CarSeriesMap" parameterType="com.carvin.entity.CarSeries">
+		select
+		<include refid="CarSeriesColumns" />
+		from car_series 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="brandId !=null">
+				and brand_id=#{brandId}
+			</if>
+                  <if test="mfrsId !=null">
+				and mfrs_id=#{mfrsId}
+			</if>
+                  <if test="name !=null and name!=''">
+				and name=#{name}
+			</if>
+                  <if test="nameRuleS !=null and nameRuleS!=''">
+				and name_rule_s=#{nameRuleS}
+			</if>
+                  <if test="nameRuleM !=null and nameRuleM!=''">
+				and name_rule_m=#{nameRuleM}
+			</if>
+                  <if test="nameRuleL !=null and nameRuleL!=''">
+				and name_rule_l=#{nameRuleL}
+			</if>
+                  <if test="fullname !=null and fullname!=''">
+				and fullname=#{fullname}
+			</if>
+                  <if test="ename !=null and ename!=''">
+				and ename=#{ename}
+			</if>
+                  <if test="pinyin !=null and pinyin!=''">
+				and pinyin=#{pinyin}
+			</if>
+                  <if test="pinyinOld !=null and pinyinOld!=''">
+				and pinyin_old=#{pinyinOld}
+			</if>
+                  <if test="alias !=null and alias!=''">
+				and alias=#{alias}
+			</if>
+                  <if test="releaseDate !=null and releaseDate!=''">
+				and release_date=#{releaseDate}
+			</if>
+                  <if test="launchDate !=null and launchDate!=''">
+				and launch_date=#{launchDate}
+			</if>
+                  <if test="stopDate !=null and stopDate!=''">
+				and stop_date=#{stopDate}
+			</if>
+                  <if test="levelId !=null">
+				and level_id=#{levelId}
+			</if>
+                  <if test="photo !=null and photo!=''">
+				and photo=#{photo}
+			</if>
+                  <if test="intro !=null and intro!=''">
+				and intro=#{intro}
+			</if>
+                  <if test="officialUrl !=null and officialUrl!=''">
+				and official_url=#{officialUrl}
+			</if>
+                  <if test="updateUserId !=null">
+				and update_user_id=#{updateUserId}
+			</if>
+                  <if test="updateTime !=null and updateTime!=''">
+				and update_time=#{updateTime}
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+				and create_time=#{createTime}
+			</if>
+                  <if test="image !=null and image!=''">
+				and image=#{image}
+			</if>
+                  <if test="isShow !=null">
+				and is_show=#{isShow}
+			</if>
+                  <if test="heat !=null">
+				and heat=#{heat}
+			</if>
+                  <if test="isdel !=null">
+				and isdel=#{isdel}
+			</if>
+                  <if test="iautosName !=null and iautosName!=''">
+				and iautos_name=#{iautosName}
+			</if>
+                  <if test="iautosPyItl !=null and iautosPyItl!=''">
+				and iautos_py_itl=#{iautosPyItl}
+			</if>
+                  <if test="iautosPy !=null and iautosPy!=''">
+				and iautos_py=#{iautosPy}
+			</if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+				and revise_time=#{reviseTime}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarSeries" parameterType="com.carvin.entity.CarSeries">
+		UPDATE car_series 
+		SET
+		id=#{id}, brand_id=#{brandId}, mfrs_id=#{mfrsId}, name=#{name}, name_rule_s=#{nameRuleS}, name_rule_m=#{nameRuleM}, name_rule_l=#{nameRuleL}, fullname=#{fullname}, ename=#{ename}, pinyin=#{pinyin}, pinyin_old=#{pinyinOld}, alias=#{alias}, release_date=#{releaseDate}, launch_date=#{launchDate}, stop_date=#{stopDate}, level_id=#{levelId}, photo=#{photo}, intro=#{intro}, official_url=#{officialUrl}, update_user_id=#{updateUserId}, update_time=#{updateTime}, create_time=#{createTime}, image=#{image}, is_show=#{isShow}, heat=#{heat}, isdel=#{isdel}, iautos_name=#{iautosName}, iautos_py_itl=#{iautosPyItl}, iautos_py=#{iautosPy}, revise_time=#{reviseTime}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarSeries" >
+	  UPDATE car_series 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="brandId !=null">
+			    brand_id =  #{brandId},
+			</if>
+                  <if test="mfrsId !=null">
+			    mfrs_id =  #{mfrsId},
+			</if>
+                  <if test="name !=null and name!=''">
+			    name =  #{name},
+			</if>
+                  <if test="nameRuleS !=null and nameRuleS!=''">
+			    name_rule_s =  #{nameRuleS},
+			</if>
+                  <if test="nameRuleM !=null and nameRuleM!=''">
+			    name_rule_m =  #{nameRuleM},
+			</if>
+                  <if test="nameRuleL !=null and nameRuleL!=''">
+			    name_rule_l =  #{nameRuleL},
+			</if>
+                  <if test="fullname !=null and fullname!=''">
+			    fullname =  #{fullname},
+			</if>
+                  <if test="ename !=null and ename!=''">
+			    ename =  #{ename},
+			</if>
+                  <if test="pinyin !=null and pinyin!=''">
+			    pinyin =  #{pinyin},
+			</if>
+                  <if test="pinyinOld !=null and pinyinOld!=''">
+			    pinyin_old =  #{pinyinOld},
+			</if>
+                  <if test="alias !=null and alias!=''">
+			    alias =  #{alias},
+			</if>
+                  <if test="releaseDate !=null and releaseDate!=''">
+			    release_date =  #{releaseDate},
+			</if>
+                  <if test="launchDate !=null and launchDate!=''">
+			    launch_date =  #{launchDate},
+			</if>
+                  <if test="stopDate !=null and stopDate!=''">
+			    stop_date =  #{stopDate},
+			</if>
+                  <if test="levelId !=null">
+			    level_id =  #{levelId},
+			</if>
+                  <if test="photo !=null and photo!=''">
+			    photo =  #{photo},
+			</if>
+                  <if test="intro !=null and intro!=''">
+			    intro =  #{intro},
+			</if>
+                  <if test="officialUrl !=null and officialUrl!=''">
+			    official_url =  #{officialUrl},
+			</if>
+                  <if test="updateUserId !=null">
+			    update_user_id =  #{updateUserId},
+			</if>
+                  <if test="updateTime !=null and updateTime!=''">
+			    update_time =  #{updateTime},
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+			    create_time =  #{createTime},
+			</if>
+                  <if test="image !=null and image!=''">
+			    image =  #{image},
+			</if>
+                  <if test="isShow !=null">
+			    is_show =  #{isShow},
+			</if>
+                  <if test="heat !=null">
+			    heat =  #{heat},
+			</if>
+                  <if test="isdel !=null">
+			    isdel =  #{isdel},
+			</if>
+                  <if test="iautosName !=null and iautosName!=''">
+			    iautos_name =  #{iautosName},
+			</if>
+                  <if test="iautosPyItl !=null and iautosPyItl!=''">
+			    iautos_py_itl =  #{iautosPyItl},
+			</if>
+                  <if test="iautosPy !=null and iautosPy!=''">
+			    iautos_py =  #{iautosPy},
+			</if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+			    revise_time =  #{reviseTime},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarSeries" parameterType="com.carvin.entity.CarSeries">
+		delete from car_series 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="brandId !=null">
+				and brand_id =  #{brandId}
+			</if>
+                  <if test="mfrsId !=null">
+				and mfrs_id =  #{mfrsId}
+			</if>
+                  <if test="name !=null and name!=''">
+				and name =  #{name}
+			</if>
+                  <if test="nameRuleS !=null and nameRuleS!=''">
+				and name_rule_s =  #{nameRuleS}
+			</if>
+                  <if test="nameRuleM !=null and nameRuleM!=''">
+				and name_rule_m =  #{nameRuleM}
+			</if>
+                  <if test="nameRuleL !=null and nameRuleL!=''">
+				and name_rule_l =  #{nameRuleL}
+			</if>
+                  <if test="fullname !=null and fullname!=''">
+				and fullname =  #{fullname}
+			</if>
+                  <if test="ename !=null and ename!=''">
+				and ename =  #{ename}
+			</if>
+                  <if test="pinyin !=null and pinyin!=''">
+				and pinyin =  #{pinyin}
+			</if>
+                  <if test="pinyinOld !=null and pinyinOld!=''">
+				and pinyin_old =  #{pinyinOld}
+			</if>
+                  <if test="alias !=null and alias!=''">
+				and alias =  #{alias}
+			</if>
+                  <if test="releaseDate !=null and releaseDate!=''">
+				and release_date =  #{releaseDate}
+			</if>
+                  <if test="launchDate !=null and launchDate!=''">
+				and launch_date =  #{launchDate}
+			</if>
+                  <if test="stopDate !=null and stopDate!=''">
+				and stop_date =  #{stopDate}
+			</if>
+                  <if test="levelId !=null">
+				and level_id =  #{levelId}
+			</if>
+                  <if test="photo !=null and photo!=''">
+				and photo =  #{photo}
+			</if>
+                  <if test="intro !=null and intro!=''">
+				and intro =  #{intro}
+			</if>
+                  <if test="officialUrl !=null and officialUrl!=''">
+				and official_url =  #{officialUrl}
+			</if>
+                  <if test="updateUserId !=null">
+				and update_user_id =  #{updateUserId}
+			</if>
+                  <if test="updateTime !=null and updateTime!=''">
+				and update_time =  #{updateTime}
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+				and create_time =  #{createTime}
+			</if>
+                  <if test="image !=null and image!=''">
+				and image =  #{image}
+			</if>
+                  <if test="isShow !=null">
+				and is_show =  #{isShow}
+			</if>
+                  <if test="heat !=null">
+				and heat =  #{heat}
+			</if>
+                  <if test="isdel !=null">
+				and isdel =  #{isdel}
+			</if>
+                  <if test="iautosName !=null and iautosName!=''">
+				and iautos_name =  #{iautosName}
+			</if>
+                  <if test="iautosPyItl !=null and iautosPyItl!=''">
+				and iautos_py_itl =  #{iautosPyItl}
+			</if>
+                  <if test="iautosPy !=null and iautosPy!=''">
+				and iautos_py =  #{iautosPy}
+			</if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+				and revise_time =  #{reviseTime}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

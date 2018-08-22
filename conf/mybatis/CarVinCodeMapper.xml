@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarVinCodeMapper">
+	     <!-- 结果对应-->
+	<resultMap id="CarVinCodeMap" type="com.carvin.entity.CarVinCode">
+		   <result property="id" column="id" /> <!-- -->
+		   <result property="gbm" column="gbm" /> <!-- -->
+		   <result property="sbdh" column="sbdh" /> <!-- -->
+		   <result property="emissions" column="emissions" /> <!-- -->
+		   <result property="engineModel" column="engine_model" /> <!-- -->
+		   <result property="powerKw" column="power_kw" /> <!-- -->
+		   <result property="remarks" column="remarks" /> <!-- -->
+		   <result property="batchTime" column="batch_time" /> <!-- -->
+	</resultMap>
+	
+	
+	<sql id="CarVinCodeColumns">
+		  id, gbm, sbdh, emissions, engine_model, power_kw, remarks, batch_time
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarVinCode" resultMap="CarVinCodeMap" 
+	parameterType="com.carvin.entity.CarVinCode">
+		select
+		<include refid="CarVinCodeColumns" />
+		from car_vin_code 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="gbm !=null and gbm!=''">
+			           and gbm=#{gbm}
+			      </if>
+                  <if test="sbdh !=null and sbdh!=''">
+			           and sbdh=#{sbdh}
+			      </if>
+                  <if test="emissions !=null and emissions!=''">
+			           and emissions=#{emissions}
+			      </if>
+                  <if test="engineModel !=null and engineModel!=''">
+			           and engine_model=#{engineModel}
+			      </if>
+                  <if test="powerKw !=null and powerKw!=''">
+			           and power_kw=#{powerKw}
+			      </if>
+                  <if test="remarks !=null and remarks!=''">
+			           and remarks=#{remarks}
+			      </if>
+                  <if test="batchTime !=null and batchTime!=''">
+			           and batch_time=#{batchTime}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_vin_code的数量-->
+	<select id="getCarVinCodeCount" resultType="Integer">
+		select count(*)
+		from car_vin_code
+	</select>
+	
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarVinCode" useGeneratedKeys="true" keyProperty="id">
+		insert into car_vin_code
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="gbm !=null and gbm!=''">
+		      gbm,
+		    </if>
+                  <if test="sbdh !=null and sbdh!=''">
+		      sbdh,
+		    </if>
+                  <if test="emissions !=null and emissions!=''">
+		      emissions,
+		    </if>
+                  <if test="engineModel !=null and engineModel!=''">
+		      engine_model,
+		    </if>
+                  <if test="powerKw !=null and powerKw!=''">
+		      power_kw,
+		    </if>
+                  <if test="remarks !=null and remarks!=''">
+		      remarks,
+		    </if>
+                  <if test="batchTime !=null and batchTime!=''">
+		      batch_time,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		    <if test="gbm !=null and gbm!=''">
+		     #{gbm},
+		    </if>
+		    <if test="sbdh !=null and sbdh!=''">
+		     #{sbdh},
+		    </if>
+		    <if test="emissions !=null and emissions!=''">
+		     #{emissions},
+		    </if>
+		    <if test="engineModel !=null and engineModel!=''">
+		     #{engineModel},
+		    </if>
+		    <if test="powerKw !=null and powerKw!=''">
+		     #{powerKw},
+		    </if>
+		    <if test="remarks !=null and remarks!=''">
+		     #{remarks},
+		    </if>
+		    <if test="batchTime !=null and batchTime!=''">
+		     #{batchTime},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarVinCodeById" parameterType="Integer" resultMap="CarVinCodeMap">
+		select 
+		<include refid="CarVinCodeColumns" /> 
+		from car_vin_code where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 car_vin_code  -->
+	<select id="listCarVinCode" resultMap="CarVinCodeMap" parameterType="com.carvin.entity.CarVinCode">
+		select
+		<include refid="CarVinCodeColumns" />
+		from car_vin_code 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+				and gbm=#{gbm}
+			</if>
+                  <if test="sbdh !=null and sbdh!=''">
+				and sbdh=#{sbdh}
+			</if>
+                  <if test="emissions !=null and emissions!=''">
+				and emissions=#{emissions}
+			</if>
+                  <if test="engineModel !=null and engineModel!=''">
+				and engine_model=#{engineModel}
+			</if>
+                  <if test="powerKw !=null and powerKw!=''">
+				and power_kw=#{powerKw}
+			</if>
+                  <if test="remarks !=null and remarks!=''">
+				and remarks=#{remarks}
+			</if>
+                  <if test="batchTime !=null and batchTime!=''">
+				and batch_time=#{batchTime}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarVinCode" parameterType="com.carvin.entity.CarVinCode">
+		UPDATE car_vin_code 
+		SET
+		id=#{id}, gbm=#{gbm}, sbdh=#{sbdh}, emissions=#{emissions}, engine_model=#{engineModel}, power_kw=#{powerKw}, remarks=#{remarks}, batch_time=#{batchTime}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarVinCode" >
+	  UPDATE car_vin_code 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+			    gbm =  #{gbm},
+			</if>
+                  <if test="sbdh !=null and sbdh!=''">
+			    sbdh =  #{sbdh},
+			</if>
+                  <if test="emissions !=null and emissions!=''">
+			    emissions =  #{emissions},
+			</if>
+                  <if test="engineModel !=null and engineModel!=''">
+			    engine_model =  #{engineModel},
+			</if>
+                  <if test="powerKw !=null and powerKw!=''">
+			    power_kw =  #{powerKw},
+			</if>
+                  <if test="remarks !=null and remarks!=''">
+			    remarks =  #{remarks},
+			</if>
+                  <if test="batchTime !=null and batchTime!=''">
+			    batch_time =  #{batchTime},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarVinCode" parameterType="com.carvin.entity.CarVinCode">
+		delete from car_vin_code 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+				and gbm =  #{gbm}
+			</if>
+                  <if test="sbdh !=null and sbdh!=''">
+				and sbdh =  #{sbdh}
+			</if>
+                  <if test="emissions !=null and emissions!=''">
+				and emissions =  #{emissions}
+			</if>
+                  <if test="engineModel !=null and engineModel!=''">
+				and engine_model =  #{engineModel}
+			</if>
+                  <if test="powerKw !=null and powerKw!=''">
+				and power_kw =  #{powerKw}
+			</if>
+                  <if test="remarks !=null and remarks!=''">
+				and remarks =  #{remarks}
+			</if>
+                  <if test="batchTime !=null and batchTime!=''">
+				and batch_time =  #{batchTime}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

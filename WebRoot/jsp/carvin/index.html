@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="vin.css" />
+</head>
+
+<body>
+
+<!--头部 star -->
+<div class="vin-header">
+   <div class="vin-header-logo"><a href="#">汽车库</a></div>
+   <div class="vin-header-tit">查VIN码</div>
+ </div>
+<!--头部 end -->   
+<script type="text/javascript">
+		function searchVinCode(stype) {
+		    var vincode =document.getElementById("vincode").value;
+		    //alert(vincode.value);
+		    var reg = /^[0-9a-zA-Z]+$/;
+		    if(!reg.test(vincode)||vincode.length!=17){
+				alert("请输入正确的vin码。");	
+				return;
+		    }
+		    
+		    if(stype==0){
+		    	window.location.href="vinresult.html?vincode="+vincode;	
+		    }else if(stype==1){
+		    	window.location.href="accresult.html?vincode="+vincode;
+		    }else if(stype==2){
+		    	window.location.href="insresult.html?vincode="+vincode;
+		    }
+		    
+		}
+</script>
+<div class="min-height">
+
+<!--内容 star -->  
+ <div class="check-vin-img"><img src="images/pic2.jpg" alt="车源图片"></div>
+ <div class="check-vin-box">
+     <div class="accident-inquiry-input">
+     	<input name="" type="text" class="vin" id="vincode" value="" placeholder="请输入17位车辆VIN码">
+     	<!--  <i>1个字</i> -->
+     </div>
+	 <a href="javascript:void(0);" onclick="searchVinCode(0)" class="blue-but">VIN码查询</a>
+	 <a href="javascript:void(0);" onclick="searchVinCode(1)" class="blue-but">事故车查询</a>
+	 <a href="javascript:void(0);" onclick="searchVinCode(2)" class="blue-but">保险查询</a>
+ </div>
+ 
+ <div class="query-results">
+    <div class="query-result-tit">
+        什么是VIN码？
+    </div>
+     <div class="query-result-text">
+       <P>车辆识别码（VIN）是一个特点的汽车识别码，VIN是其英文Vehicle Ldentification Number缩写。VIN作为汽车的指纹，就像我们每个人的身份证一个具有唯一性，没有两辆车有相同的VIN，VIN由17个字符（数字和大写字母）组成，其中包含了该车辆的生产厂家、日期、车型等信息，VIN可以用于车辆的追踪召唤，保险维修等用途。</P>
+    </div>
+ </div>
+ 
+ <div class="query-results">
+    <div class="query-result-tit">
+        VIN码在哪里？
+    </div>
+     <div class="query-result-text">
+       <P>查看车辆识别码的最简单的方法就是站在车外的驾驶员一侧，您可以看到前挡风玻璃下方的一串17位编码，如果在前挡风玻璃下方无法找到VIN，您还可以打开驾驶员侧车门，在驾驶员一侧的中柱（也叫B柱）上看到，此外，您还可以在您的车辆行驶本和保险单上找到车辆识别码。</P>
+    </div>
+ </div> 
+  <!--内容 end -->    
+</div>	
+
+<!--底部 star -->  
+<div class="vin-footer">
+<a href="index.html" class="current">首页</a>
+<a href="vinhistory.html">我的查询 </a>
+</div>   
+<!--底部 end -->    
+</body>
+</html>

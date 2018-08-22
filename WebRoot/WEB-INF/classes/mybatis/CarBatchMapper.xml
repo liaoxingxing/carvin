@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarBatchMapper">
+	     <!-- 结果对应-->
+	<resultMap id="CarBatchMap" type="com.carvin.entity.CarBatch">
+		   <result property="batchNum" column="batch_num" /> <!-- -->
+		   <result property="batchTime" column="batch_time" /> <!-- -->
+	</resultMap>
+	
+	
+	<sql id="CarBatchColumns">
+		  batch_num, batch_time
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarBatch" resultMap="CarBatchMap" 
+	parameterType="com.carvin.entity.CarBatch">
+		select
+		<include refid="CarBatchColumns" />
+		from car_batch 
+		 <where>
+                  <if test="batchNum !=null">
+			           and batch_num=#{batchNum}
+			      </if>
+                  <if test="batchTime !=null and batchTime!=''">
+			           and batch_time=#{batchTime}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_batch的数量-->
+	<select id="getCarBatchCount" resultType="Integer">
+		select count(*)
+		from car_batch
+	</select>
+	
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarBatch" useGeneratedKeys="true" keyProperty="id">
+		insert into car_batch
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="batchNum !=null">
+		      batch_num,
+		    </if>
+                  <if test="batchTime !=null and batchTime!=''">
+		      batch_time,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="batchNum !=null">
+		     #{batchNum},
+		    </if>
+		    <if test="batchTime !=null and batchTime!=''">
+		     #{batchTime},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarBatchById" parameterType="Integer" resultMap="CarBatchMap">
+		select 
+		<include refid="CarBatchColumns" /> 
+		from car_batch where 
+		  	batch_num=#{batchNum}
+	</select>
+	
+	<!-- 根据条件查询 car_batch  -->
+	<select id="listCarBatch" resultMap="CarBatchMap" parameterType="com.carvin.entity.CarBatch">
+		select
+		<include refid="CarBatchColumns" />
+		from car_batch 
+		<where>
+                  <if test="batchNum !=null">
+				and batch_num=#{batchNum}
+			</if>
+                  <if test="batchTime !=null and batchTime!=''">
+				and batch_time=#{batchTime}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarBatch" parameterType="com.carvin.entity.CarBatch">
+		UPDATE car_batch 
+		SET
+		batch_num=#{batchNum}, batch_time=#{batchTime}
+		WHERE
+		batch_num=#{batchNum}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarBatch" >
+	  UPDATE car_batch 
+		<set>
+                  <if test="batchNum !=null">
+			    batch_num =  #{batchNum},
+			</if>
+                  <if test="batchTime !=null and batchTime!=''">
+			    batch_time =  #{batchTime},
+			</if>
+	   </set>
+		WHERE
+	batch_num=#{batchNum}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarBatch" parameterType="com.carvin.entity.CarBatch">
+		delete from car_batch 
+	<where>
+                  <if test="batchNum !=null">
+				and batch_num =  #{batchNum}
+			</if>
+                  <if test="batchTime !=null and batchTime!=''">
+				and batch_time =  #{batchTime}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

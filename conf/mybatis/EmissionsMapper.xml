@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.EmissionsMapper">
+	     <!-- 结果对应-->
+	<resultMap id="EmissionsMap" type="com.carvin.entity.Emissions">
+		   <result property="id" column="id" /> <!-- -->
+		   <result property="parentId" column="parent_id" /> <!-- -->
+		   <result property="name" column="name" /> <!-- -->
+		   <result property="createtime" column="createtime" /> <!-- -->
+		   <result property="isdel" column="isdel" /> <!-- -->
+	</resultMap>
+	
+	
+	<sql id="EmissionsColumns">
+		  id, parent_id, name, createtime, isdel
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageEmissions" resultMap="EmissionsMap" 
+	parameterType="com.carvin.entity.Emissions">
+		select
+		<include refid="EmissionsColumns" />
+		from emissions 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="parentId !=null">
+			           and parent_id=#{parentId}
+			      </if>
+                  <if test="name !=null and name!=''">
+			           and name=#{name}
+			      </if>
+                  <if test="createtime !=null and createtime!=''">
+			           and createtime=#{createtime}
+			      </if>
+                  <if test="isdel !=null">
+			           and isdel=#{isdel}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询emissions的数量-->
+	<select id="getEmissionsCount" resultType="Integer">
+		select count(*)
+		from emissions
+	</select>
+	
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.Emissions" useGeneratedKeys="true" keyProperty="id">
+		insert into emissions
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="parentId !=null">
+		      parent_id,
+		    </if>
+                  <if test="name !=null and name!=''">
+		      name,
+		    </if>
+                  <if test="createtime !=null and createtime!=''">
+		      createtime,
+		    </if>
+                  <if test="isdel !=null">
+		      isdel,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		     <if test="parentId !=null">
+		     #{parentId},
+		    </if>
+		    <if test="name !=null and name!=''">
+		     #{name},
+		    </if>
+		    <if test="createtime !=null and createtime!=''">
+		     #{createtime},
+		    </if>
+		     <if test="isdel !=null">
+		     #{isdel},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getEmissionsById" parameterType="Integer" resultMap="EmissionsMap">
+		select 
+		<include refid="EmissionsColumns" /> 
+		from emissions where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 emissions  -->
+	<select id="listEmissions" resultMap="EmissionsMap" parameterType="com.carvin.entity.Emissions">
+		select
+		<include refid="EmissionsColumns" />
+		from emissions 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="parentId !=null">
+				and parent_id=#{parentId}
+			</if>
+                  <if test="name !=null and name!=''">
+				and name=#{name}
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+				and createtime=#{createtime}
+			</if>
+                  <if test="isdel !=null">
+				and isdel=#{isdel}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateEmissions" parameterType="com.carvin.entity.Emissions">
+		UPDATE emissions 
+		SET
+		id=#{id}, parent_id=#{parentId}, name=#{name}, createtime=#{createtime}, isdel=#{isdel}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.Emissions" >
+	  UPDATE emissions 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="parentId !=null">
+			    parent_id =  #{parentId},
+			</if>
+                  <if test="name !=null and name!=''">
+			    name =  #{name},
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+			    createtime =  #{createtime},
+			</if>
+                  <if test="isdel !=null">
+			    isdel =  #{isdel},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteEmissions" parameterType="com.carvin.entity.Emissions">
+		delete from emissions 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="parentId !=null">
+				and parent_id =  #{parentId}
+			</if>
+                  <if test="name !=null and name!=''">
+				and name =  #{name}
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+				and createtime =  #{createtime}
+			</if>
+                  <if test="isdel !=null">
+				and isdel =  #{isdel}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

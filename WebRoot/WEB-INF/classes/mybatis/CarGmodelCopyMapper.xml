@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarGmodelCopyMapper">
+	     <!-- 结果对应-->
+	<resultMap id="CarGmodelCopyMap" type="com.carvin.entity.CarGmodelCopy">
+		   <result property="id" column="id" /> <!-- -->
+		   <result property="brandId" column="brand_id" /> <!-- -->
+		   <result property="seriesId" column="series_id" /> <!-- -->
+		   <result property="simpleId" column="simple_id" /> <!-- -->
+		   <result property="brandName" column="brand_name" /> <!-- -->
+		   <result property="seriesName" column="series_name" /> <!-- -->
+		   <result property="simpleName" column="simple_name" /> <!-- -->
+		   <result property="versionYear" column="version_year" /> <!-- -->
+		   <result property="productionDate" column="production_date" /> <!-- -->
+		   <result property="displacement" column="displacement" /> <!-- -->
+		   <result property="maxPowerKw" column="max_power_kw" /> <!-- -->
+		   <result property="emissionsId" column="emissions_id" /> <!-- -->
+		   <result property="bright" column="bright" /> <!-- -->
+		   <result property="newPrice" column="new_price" /> <!-- -->
+		   <result property="gbm" column="gbm" /> <!-- -->
+		   <result property="userId" column="user_id" /> <!-- 操作人id-->
+		   <result property="updateTime" column="update_time" /> <!-- 操作时间-->
+		   <result property="isShow" column="is_show" /> <!-- -->
+		   <result property="isSure" column="is_sure" /> <!-- -->
+		   <result property="isCode" column="is_code" /> <!-- 是否审核 0：待审核   1：已审核-->
+		   <result property="sourceFrom" column="source_from" /> <!-- 1.第一车网2.程序匹配3.精友-->
+		   <result property="str" column="str" /> <!-- -->
+		   <result property="carType" column="car_type" /> <!-- -->
+		   <result property="mfrsId" column="mfrs_id" /> <!-- -->
+		   <result property="mfrsName" column="mfrs_name" /> <!-- -->
+		   <result property="engineName" column="engine_name" /> <!-- -->
+		   <result property="seats" column="seats" /> <!-- -->
+	</resultMap>
+	
+	
+	<sql id="CarGmodelCopyColumns">
+		  id, brand_id, series_id, simple_id, brand_name, series_name, simple_name, version_year, production_date, displacement, max_power_kw, emissions_id, bright, new_price, gbm, user_id, update_time, is_show, is_sure, is_code, source_from, str, car_type, mfrs_id, mfrs_name, engine_name, seats
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarGmodelCopy" resultMap="CarGmodelCopyMap" 
+	parameterType="com.carvin.entity.CarGmodelCopy">
+		select
+		<include refid="CarGmodelCopyColumns" />
+		from car_gmodel_copy 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="brandId !=null">
+			           and brand_id=#{brandId}
+			      </if>
+                  <if test="seriesId !=null">
+			           and series_id=#{seriesId}
+			      </if>
+                  <if test="simpleId !=null">
+			           and simple_id=#{simpleId}
+			      </if>
+                  <if test="brandName !=null and brandName!=''">
+			           and brand_name=#{brandName}
+			      </if>
+                  <if test="seriesName !=null and seriesName!=''">
+			           and series_name=#{seriesName}
+			      </if>
+                  <if test="simpleName !=null and simpleName!=''">
+			           and simple_name=#{simpleName}
+			      </if>
+                  <if test="versionYear !=null">
+			           and version_year=#{versionYear}
+			      </if>
+                  <if test="productionDate !=null and productionDate!=''">
+			           and production_date=#{productionDate}
+			      </if>
+                  <if test="displacement !=null">
+			           and displacement=#{displacement}
+			      </if>
+                  <if test="maxPowerKw !=null">
+			           and max_power_kw=#{maxPowerKw}
+			      </if>
+                  <if test="emissionsId !=null">
+			           and emissions_id=#{emissionsId}
+			      </if>
+                  <if test="bright !=null and bright!=''">
+			           and bright=#{bright}
+			      </if>
+                  <if test="newPrice !=null">
+			           and new_price=#{newPrice}
+			      </if>
+                  <if test="gbm !=null and gbm!=''">
+			           and gbm=#{gbm}
+			      </if>
+                  <if test="userId !=null">
+			           and user_id=#{userId}
+			      </if>
+                  <if test="updateTime !=null">
+			           and update_time=#{updateTime}
+			      </if>
+                  <if test="isShow !=null">
+			           and is_show=#{isShow}
+			      </if>
+                  <if test="isSure !=null">
+			           and is_sure=#{isSure}
+			      </if>
+                  <if test="isCode !=null">
+			           and is_code=#{isCode}
+			      </if>
+                  <if test="sourceFrom !=null">
+			           and source_from=#{sourceFrom}
+			      </if>
+                  <if test="str !=null and str!=''">
+			           and str=#{str}
+			      </if>
+                  <if test="carType !=null">
+			           and car_type=#{carType}
+			      </if>
+                  <if test="mfrsId !=null">
+			           and mfrs_id=#{mfrsId}
+			      </if>
+                  <if test="mfrsName !=null and mfrsName!=''">
+			           and mfrs_name=#{mfrsName}
+			      </if>
+                  <if test="engineName !=null and engineName!=''">
+			           and engine_name=#{engineName}
+			      </if>
+                  <if test="seats !=null">
+			           and seats=#{seats}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_gmodel_copy的数量-->
+	<select id="getCarGmodelCopyCount" resultType="Integer">
+		select count(*)
+		from car_gmodel_copy
+	</select>
+	
+
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarGmodelCopy" useGeneratedKeys="true" keyProperty="id">
+		insert into car_gmodel_copy
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="brandId !=null">
+		      brand_id,
+		    </if>
+                  <if test="seriesId !=null">
+		      series_id,
+		    </if>
+                  <if test="simpleId !=null">
+		      simple_id,
+		    </if>
+                  <if test="brandName !=null and brandName!=''">
+		      brand_name,
+		    </if>
+                  <if test="seriesName !=null and seriesName!=''">
+		      series_name,
+		    </if>
+                  <if test="simpleName !=null and simpleName!=''">
+		      simple_name,
+		    </if>
+                  <if test="versionYear !=null">
+		      version_year,
+		    </if>
+                  <if test="productionDate !=null and productionDate!=''">
+		      production_date,
+		    </if>
+                  <if test="displacement !=null">
+		      displacement,
+		    </if>
+                  <if test="maxPowerKw !=null">
+		      max_power_kw,
+		    </if>
+                  <if test="emissionsId !=null">
+		      emissions_id,
+		    </if>
+                  <if test="bright !=null and bright!=''">
+		      bright,
+		    </if>
+                  <if test="newPrice !=null">
+		      new_price,
+		    </if>
+                  <if test="gbm !=null and gbm!=''">
+		      gbm,
+		    </if>
+                  <if test="userId !=null">
+		      user_id,
+		    </if>
+                  <if test="updateTime !=null">
+		      update_time,
+		    </if>
+                  <if test="isShow !=null">
+		      is_show,
+		    </if>
+                  <if test="isSure !=null">
+		      is_sure,
+		    </if>
+                  <if test="isCode !=null">
+		      is_code,
+		    </if>
+                  <if test="sourceFrom !=null">
+		      source_from,
+		    </if>
+                  <if test="str !=null and str!=''">
+		      str,
+		    </if>
+                  <if test="carType !=null">
+		      car_type,
+		    </if>
+                  <if test="mfrsId !=null">
+		      mfrs_id,
+		    </if>
+                  <if test="mfrsName !=null and mfrsName!=''">
+		      mfrs_name,
+		    </if>
+                  <if test="engineName !=null and engineName!=''">
+		      engine_name,
+		    </if>
+                  <if test="seats !=null">
+		      seats,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		     <if test="brandId !=null">
+		     #{brandId},
+		    </if>
+		     <if test="seriesId !=null">
+		     #{seriesId},
+		    </if>
+		     <if test="simpleId !=null">
+		     #{simpleId},
+		    </if>
+		    <if test="brandName !=null and brandName!=''">
+		     #{brandName},
+		    </if>
+		    <if test="seriesName !=null and seriesName!=''">
+		     #{seriesName},
+		    </if>
+		    <if test="simpleName !=null and simpleName!=''">
+		     #{simpleName},
+		    </if>
+		     <if test="versionYear !=null">
+		     #{versionYear},
+		    </if>
+		    <if test="productionDate !=null and productionDate!=''">
+		     #{productionDate},
+		    </if>
+		     <if test="displacement !=null">
+		     #{displacement},
+		    </if>
+		     <if test="maxPowerKw !=null">
+		     #{maxPowerKw},
+		    </if>
+		     <if test="emissionsId !=null">
+		     #{emissionsId},
+		    </if>
+		    <if test="bright !=null and bright!=''">
+		     #{bright},
+		    </if>
+		     <if test="newPrice !=null">
+		     #{newPrice},
+		    </if>
+		    <if test="gbm !=null and gbm!=''">
+		     #{gbm},
+		    </if>
+		     <if test="userId !=null">
+		     #{userId},
+		    </if>
+		     <if test="updateTime !=null">
+		     #{updateTime},
+		    </if>
+		     <if test="isShow !=null">
+		     #{isShow},
+		    </if>
+		     <if test="isSure !=null">
+		     #{isSure},
+		    </if>
+		     <if test="isCode !=null">
+		     #{isCode},
+		    </if>
+		     <if test="sourceFrom !=null">
+		     #{sourceFrom},
+		    </if>
+		    <if test="str !=null and str!=''">
+		     #{str},
+		    </if>
+		     <if test="carType !=null">
+		     #{carType},
+		    </if>
+		     <if test="mfrsId !=null">
+		     #{mfrsId},
+		    </if>
+		    <if test="mfrsName !=null and mfrsName!=''">
+		     #{mfrsName},
+		    </if>
+		    <if test="engineName !=null and engineName!=''">
+		     #{engineName},
+		    </if>
+		     <if test="seats !=null">
+		     #{seats},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarGmodelCopyById" parameterType="Integer" resultMap="CarGmodelCopyMap">
+		select 
+		<include refid="CarGmodelCopyColumns" /> 
+		from car_gmodel_copy where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 car_gmodel_copy  -->
+	<select id="listCarGmodelCopy" resultMap="CarGmodelCopyMap" parameterType="com.carvin.entity.CarGmodelCopy">
+		select
+		<include refid="CarGmodelCopyColumns" />
+		from car_gmodel_copy 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="brandId !=null">
+				and brand_id=#{brandId}
+			</if>
+                  <if test="seriesId !=null">
+				and series_id=#{seriesId}
+			</if>
+                  <if test="simpleId !=null">
+				and simple_id=#{simpleId}
+			</if>
+                  <if test="brandName !=null and brandName!=''">
+				and brand_name=#{brandName}
+			</if>
+                  <if test="seriesName !=null and seriesName!=''">
+				and series_name=#{seriesName}
+			</if>
+                  <if test="simpleName !=null and simpleName!=''">
+				and simple_name=#{simpleName}
+			</if>
+                  <if test="versionYear !=null">
+				and version_year=#{versionYear}
+			</if>
+                  <if test="productionDate !=null and productionDate!=''">
+				and production_date=#{productionDate}
+			</if>
+                  <if test="displacement !=null">
+				and displacement=#{displacement}
+			</if>
+                  <if test="maxPowerKw !=null">
+				and max_power_kw=#{maxPowerKw}
+			</if>
+                  <if test="emissionsId !=null">
+				and emissions_id=#{emissionsId}
+			</if>
+                  <if test="bright !=null and bright!=''">
+				and bright=#{bright}
+			</if>
+                  <if test="newPrice !=null">
+				and new_price=#{newPrice}
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+				and gbm=#{gbm}
+			</if>
+                  <if test="userId !=null">
+				and user_id=#{userId}
+			</if>
+                  <if test="updateTime !=null">
+				and update_time=#{updateTime}
+			</if>
+                  <if test="isShow !=null">
+				and is_show=#{isShow}
+			</if>
+                  <if test="isSure !=null">
+				and is_sure=#{isSure}
+			</if>
+                  <if test="isCode !=null">
+				and is_code=#{isCode}
+			</if>
+                  <if test="sourceFrom !=null">
+				and source_from=#{sourceFrom}
+			</if>
+                  <if test="str !=null and str!=''">
+				and str=#{str}
+			</if>
+                  <if test="carType !=null">
+				and car_type=#{carType}
+			</if>
+                  <if test="mfrsId !=null">
+				and mfrs_id=#{mfrsId}
+			</if>
+                  <if test="mfrsName !=null and mfrsName!=''">
+				and mfrs_name=#{mfrsName}
+			</if>
+                  <if test="engineName !=null and engineName!=''">
+				and engine_name=#{engineName}
+			</if>
+                  <if test="seats !=null">
+				and seats=#{seats}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarGmodelCopy" parameterType="com.carvin.entity.CarGmodelCopy">
+		UPDATE car_gmodel_copy 
+		SET
+		id=#{id}, brand_id=#{brandId}, series_id=#{seriesId}, simple_id=#{simpleId}, brand_name=#{brandName}, series_name=#{seriesName}, simple_name=#{simpleName}, version_year=#{versionYear}, production_date=#{productionDate}, displacement=#{displacement}, max_power_kw=#{maxPowerKw}, emissions_id=#{emissionsId}, bright=#{bright}, new_price=#{newPrice}, gbm=#{gbm}, user_id=#{userId}, update_time=#{updateTime}, is_show=#{isShow}, is_sure=#{isSure}, is_code=#{isCode}, source_from=#{sourceFrom}, str=#{str}, car_type=#{carType}, mfrs_id=#{mfrsId}, mfrs_name=#{mfrsName}, engine_name=#{engineName}, seats=#{seats}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarGmodelCopy" >
+	  UPDATE car_gmodel_copy 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="brandId !=null">
+			    brand_id =  #{brandId},
+			</if>
+                  <if test="seriesId !=null">
+			    series_id =  #{seriesId},
+			</if>
+                  <if test="simpleId !=null">
+			    simple_id =  #{simpleId},
+			</if>
+                  <if test="brandName !=null and brandName!=''">
+			    brand_name =  #{brandName},
+			</if>
+                  <if test="seriesName !=null and seriesName!=''">
+			    series_name =  #{seriesName},
+			</if>
+                  <if test="simpleName !=null and simpleName!=''">
+			    simple_name =  #{simpleName},
+			</if>
+                  <if test="versionYear !=null">
+			    version_year =  #{versionYear},
+			</if>
+                  <if test="productionDate !=null and productionDate!=''">
+			    production_date =  #{productionDate},
+			</if>
+                  <if test="displacement !=null">
+			    displacement =  #{displacement},
+			</if>
+                  <if test="maxPowerKw !=null">
+			    max_power_kw =  #{maxPowerKw},
+			</if>
+                  <if test="emissionsId !=null">
+			    emissions_id =  #{emissionsId},
+			</if>
+                  <if test="bright !=null and bright!=''">
+			    bright =  #{bright},
+			</if>
+                  <if test="newPrice !=null">
+			    new_price =  #{newPrice},
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+			    gbm =  #{gbm},
+			</if>
+                  <if test="userId !=null">
+			    user_id =  #{userId},
+			</if>
+                  <if test="updateTime !=null">
+			    update_time =  #{updateTime},
+			</if>
+                  <if test="isShow !=null">
+			    is_show =  #{isShow},
+			</if>
+                  <if test="isSure !=null">
+			    is_sure =  #{isSure},
+			</if>
+                  <if test="isCode !=null">
+			    is_code =  #{isCode},
+			</if>
+                  <if test="sourceFrom !=null">
+			    source_from =  #{sourceFrom},
+			</if>
+                  <if test="str !=null and str!=''">
+			    str =  #{str},
+			</if>
+                  <if test="carType !=null">
+			    car_type =  #{carType},
+			</if>
+                  <if test="mfrsId !=null">
+			    mfrs_id =  #{mfrsId},
+			</if>
+                  <if test="mfrsName !=null and mfrsName!=''">
+			    mfrs_name =  #{mfrsName},
+			</if>
+                  <if test="engineName !=null and engineName!=''">
+			    engine_name =  #{engineName},
+			</if>
+                  <if test="seats !=null">
+			    seats =  #{seats},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarGmodelCopy" parameterType="com.carvin.entity.CarGmodelCopy">
+		delete from car_gmodel_copy 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="brandId !=null">
+				and brand_id =  #{brandId}
+			</if>
+                  <if test="seriesId !=null">
+				and series_id =  #{seriesId}
+			</if>
+                  <if test="simpleId !=null">
+				and simple_id =  #{simpleId}
+			</if>
+                  <if test="brandName !=null and brandName!=''">
+				and brand_name =  #{brandName}
+			</if>
+                  <if test="seriesName !=null and seriesName!=''">
+				and series_name =  #{seriesName}
+			</if>
+                  <if test="simpleName !=null and simpleName!=''">
+				and simple_name =  #{simpleName}
+			</if>
+                  <if test="versionYear !=null">
+				and version_year =  #{versionYear}
+			</if>
+                  <if test="productionDate !=null and productionDate!=''">
+				and production_date =  #{productionDate}
+			</if>
+                  <if test="displacement !=null">
+				and displacement =  #{displacement}
+			</if>
+                  <if test="maxPowerKw !=null">
+				and max_power_kw =  #{maxPowerKw}
+			</if>
+                  <if test="emissionsId !=null">
+				and emissions_id =  #{emissionsId}
+			</if>
+                  <if test="bright !=null and bright!=''">
+				and bright =  #{bright}
+			</if>
+                  <if test="newPrice !=null">
+				and new_price =  #{newPrice}
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+				and gbm =  #{gbm}
+			</if>
+                  <if test="userId !=null">
+				and user_id =  #{userId}
+			</if>
+                  <if test="updateTime !=null">
+				and update_time =  #{updateTime}
+			</if>
+                  <if test="isShow !=null">
+				and is_show =  #{isShow}
+			</if>
+                  <if test="isSure !=null">
+				and is_sure =  #{isSure}
+			</if>
+                  <if test="isCode !=null">
+				and is_code =  #{isCode}
+			</if>
+                  <if test="sourceFrom !=null">
+				and source_from =  #{sourceFrom}
+			</if>
+                  <if test="str !=null and str!=''">
+				and str =  #{str}
+			</if>
+                  <if test="carType !=null">
+				and car_type =  #{carType}
+			</if>
+                  <if test="mfrsId !=null">
+				and mfrs_id =  #{mfrsId}
+			</if>
+                  <if test="mfrsName !=null and mfrsName!=''">
+				and mfrs_name =  #{mfrsName}
+			</if>
+                  <if test="engineName !=null and engineName!=''">
+				and engine_name =  #{engineName}
+			</if>
+                  <if test="seats !=null">
+				and seats =  #{seats}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

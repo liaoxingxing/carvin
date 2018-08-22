@@ -1,0 +1,2020 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarModelSimpleMapper">
+	     <!-- 结果对应-->
+	<resultMap id="CarModelSimpleMap" type="com.carvin.entity.CarModelSimple">
+		   <result property="id" column="id" /> <!-- -->
+		   <result property="brandId" column="brand_id" /> <!-- -->
+		   <result property="mfrsId" column="mfrs_id" /> <!-- 厂商id-->
+		   <result property="seriesId" column="series_id" /> <!-- 车系列id-->
+		   <result property="subName" column="sub_name" /> <!-- -->
+		   <result property="modelName" column="model_name" /> <!-- 车辆型号-->
+		   <result property="extraName" column="extra_name" /> <!-- -->
+		   <result property="name" column="name" /> <!-- 车型名称-->
+		   <result property="fullName" column="full_name" /> <!-- 车型全称-->
+		   <result property="eName" column="e_name" /> <!-- 英文名-->
+		   <result property="alias" column="alias" /> <!-- 别名-->
+		   <result property="versionYear" column="version_year" /> <!-- 年款（年）-->
+		   <result property="versionDate" column="version_date" /> <!-- 年款时间（月）-->
+		   <result property="productionDate" column="production_date" /> <!-- 上市时间-->
+		   <result property="endDate" column="end_date" /> <!-- 停产时间-->
+		   <result property="productionYear" column="production_year" /> <!-- 生产年份-->
+		   <result property="levelId" column="level_id" /> <!-- 车辆级别id-->
+		   <result property="catId" column="cat_id" /> <!-- 车辆类型 关联表 car_category-->
+		   <result property="redcodde" column="redcodde" /> <!-- 国标码-->
+		   <result property="photo" column="photo" /> <!-- 默认图片-->
+		   <result property="intro" column="intro" /> <!-- 简介-->
+		   <result property="displacement" column="displacement" /> <!-- 排量 L-->
+		   <result property="displacementExact" column="displacement_exact" /> <!-- 排量精确 ml-->
+		   <result property="maxPowerPs" column="max_power_ps" /> <!-- 最大马力-->
+		   <result property="maxPowerKw" column="max_power_kw" /> <!-- 最大功率-->
+		   <result property="maxPowerRpm" column="max_power_rpm" /> <!-- 最大功率转速-->
+		   <result property="maxTorqueNm" column="max_torque_nm" /> <!-- 最大扭矩-->
+		   <result property="maxTorqueRpm" column="max_torque_rpm" /> <!-- 最大扭矩转速-->
+		   <result property="transmissionTypeId" column="transmission_type_id" /> <!-- 变速箱类型id-->
+		   <result property="transmissionTypeName" column="transmission_type_name" /> <!-- 变速箱类型名称 （自动 手动）-->
+		   <result property="transmissionShiftPssition" column="transmission_shift_pssition" /> <!-- 排挡位置（怀档，地，方向盘等）-->
+		   <result property="length" column="length" /> <!-- 长-->
+		   <result property="width" column="width" /> <!-- 宽-->
+		   <result property="height" column="height" /> <!-- 高-->
+		   <result property="wheelbase" column="wheelbase" /> <!-- 轴距-->
+		   <result property="frontWheelspan" column="front_wheelspan" /> <!-- 前轮距-->
+		   <result property="rearWheelspan" column="rear_wheelspan" /> <!-- 后轮距-->
+		   <result property="carBodyTypeId" column="car_body_type_id" /> <!-- 0请选择、1单厢、2两厢、3三厢；-->
+		   <result property="carBodyStructureId" column="car_body_structure_id" /> <!-- 车身结构（几门几座几厢）-->
+		   <result property="maxSpeed" column="max_speed" /> <!-- 最高车速（km/h）-->
+		   <result property="speedupOfficial" column="speedup_official" /> <!-- 百公里加速官方（s）-->
+		   <result property="speedupTest" column="speedup_test" /> <!-- 百公里加速实测-->
+		   <result property="braking" column="braking" /> <!-- 百公里制动距离（m）-->
+		   <result property="fuelConsumptionOfficial" column="fuel_consumption_official" /> <!-- 官方油耗-->
+		   <result property="fuelConsumptionTest" column="fuel_consumption_test" /> <!-- 实测油耗-->
+		   <result property="warranty" column="warranty" /> <!-- 整车质保-->
+		   <result property="weight" column="weight" /> <!-- 整备质量-->
+		   <result property="weightRange" column="weight_range" /> <!-- 载重量-->
+		   <result property="weightTotal" column="weight_total" /> <!-- 总质量-->
+		   <result property="doors" column="doors" /> <!-- 车门数-->
+		   <result property="seats" column="seats" /> <!-- 座位数-->
+		   <result property="fuelTank" column="fuel_tank" /> <!-- 油箱容积-->
+		   <result property="trunk" column="trunk" /> <!-- 行李箱容积-->
+		   <result property="trunkTotal" column="trunk_total" /> <!-- 行李最大容积-->
+		   <result property="dragCoefficient" column="drag_coefficient" /> <!-- 风阻系数-->
+		   <result property="carFuelTypeId" column="car_fuel_type_id" /> <!-- 燃油类型-->
+		   <result property="carFuelNumberId" column="car_fuel_number_id" /> <!-- 燃油标号-->
+		   <result property="engineModelName" column="engine_model_name" /> <!-- 发动机型号-->
+		   <result property="engineId" column="engine_id" /> <!-- 发动机id-->
+		   <result property="engineDirection" column="engine_direction" /> <!-- 发动机放置方向-->
+		   <result property="enginePosition" column="engine_position" /> <!-- 发动机放置位置-->
+		   <result property="compression" column="compression" /> <!-- 压缩比-->
+		   <result property="cylinder" column="cylinder" /> <!-- 汽缸数-->
+		   <result property="drivingModeId" column="driving_mode_id" /> <!-- 驱动方式id-->
+		   <result property="fourWheelDriveTypeId" column="four_wheel_drive_type_id" /> <!-- 四驱方式id-->
+		   <result property="frontSuspensionTypeId" column="front_suspension_type_id" /> <!-- 前悬架类型id-->
+		   <result property="rearSuspensionTypeId" column="rear_suspension_type_id" /> <!-- 后悬架id-->
+		   <result property="centerDifferentialTypeId" column="center_differential_type_id" /> <!-- 中央差速器类型id-->
+		   <result property="boostTypeId" column="boost_type_id" /> <!-- 助力类型id-->
+		   <result property="carStructureId" column="car_structure_id" /> <!-- 车体结构id（承载，非承载）-->
+		   <result property="frontBrakeTypeId" column="front_brake_type_id" /> <!-- 前制动器类型id-->
+		   <result property="rearBrakeTypeId" column="rear_brake_type_id" /> <!-- 后制动器类型id-->
+		   <result property="parkingBrakeTypeId" column="parking_brake_type_id" /> <!-- 驻车制动类型id-->
+		   <result property="tireId" column="tire_id" /> <!-- 轮胎id-->
+		   <result property="spareTireTypeId" column="spare_tire_type_id" /> <!-- 备胎类型（全尺寸，非全尺寸）-->
+		   <result property="tireFront" column="tire_front" /> <!-- 前轮规格-->
+		   <result property="tireRear" column="tire_rear" /> <!-- 后轮规格-->
+		   <result property="spareTire" column="spare_tire" /> <!-- 备胎规格-->
+		   <result property="multiMediaTypeId" column="multi_media_type_id" /> <!-- 多媒体系统类型id-->
+		   <result property="speakerNumberId" column="speaker_number_id" /> <!-- 扬声器数量id-->
+		   <result property="seatReclineId" column="seat_recline_id" /> <!-- 后排座椅放倒方式id-->
+		   <result property="wheelAdjustTypeId" column="wheel_adjust_type_id" /> <!-- 方向盘调节方式id-->
+		   <result property="babySeatId" column="baby_seat_id" /> <!-- 儿童座椅接口方式id-->
+		   <result property="airconControlTypeId" column="aircon_control_type_id" /> <!-- 空调控制方式id-->
+		   <result property="createTime" column="create_time" /> <!-- 创建时间-->
+		   <result property="updateTime" column="update_time" /> <!-- 更新时间-->
+		   <result property="createUserId" column="create_user_id" /> <!-- 创建人-->
+		   <result property="updateUserId" column="update_user_id" /> <!-- 更新人-->
+		   <result property="emissionsId" column="emissions_id" /> <!-- 环保标准id-->
+		   <result property="emissionsLocalId" column="emissions_local_id" /> <!-- 地方排放类型（例如京v）-->
+		   <result property="isValid" column="is_valid" /> <!-- 是否有效-->
+		   <result property="isAttention" column="is_attention" /> <!-- 关注度-->
+		   <result property="intakeId" column="intake_id" /> <!-- 进气方式，来自字典表base_car_intake-->
+		   <result property="roofId" column="roof_id" /> <!-- 1硬顶、2敞篷；-->
+		   <result property="isHatchback" column="is_hatchback" /> <!-- 是否掀背-->
+		   <result property="isTurbo" column="is_turbo" /> <!-- 是否增压发动机  1yes-->
+		   <result property="isdel" column="isdel" /> <!-- 是否删除 0 no 1 yes-->
+		   <result property="simpleName" column="simple_name" /> <!-- 组合车型名称-->
+		   <result property="isShow" column="is_show" /> <!-- 0:不显示 1:显示 2:无与第一车网对应关系 5:合并名称 6:待审核 10:隐藏车型-->
+		   <result property="newPrice" column="new_price" /> <!-- 新车指导价-->
+		   <result property="reviseTime" column="revise_time" /> <!-- 车虫网更新时间-->
+		   <result property="operateTime" column="operate_time" /> <!-- -->
+	</resultMap>
+	
+	
+	<sql id="CarModelSimpleColumns">
+		  id, brand_id, mfrs_id, series_id, sub_name, model_name, extra_name, name, full_name, e_name, alias, version_year, version_date, production_date, end_date, production_year, level_id, cat_id, redcodde, photo, intro, displacement, displacement_exact, max_power_ps, max_power_kw, max_power_rpm, max_torque_nm, max_torque_rpm, transmission_type_id, transmission_type_name, transmission_shift_pssition, length, width, height, wheelbase, front_wheelspan, rear_wheelspan, car_body_type_id, car_body_structure_id, max_speed, speedup_official, speedup_test, braking, fuel_consumption_official, fuel_consumption_test, warranty, weight, weight_range, weight_total, doors, seats, fuel_tank, trunk, trunk_total, drag_coefficient, car_fuel_type_id, car_fuel_number_id, engine_model_name, engine_id, engine_direction, engine_position, compression, cylinder, driving_mode_id, four_wheel_drive_type_id, front_suspension_type_id, rear_suspension_type_id, center_differential_type_id, boost_type_id, car_structure_id, front_brake_type_id, rear_brake_type_id, parking_brake_type_id, tire_id, spare_tire_type_id, tire_front, tire_rear, spare_tire, multi_media_type_id, speaker_number_id, seat_recline_id, wheel_adjust_type_id, baby_seat_id, aircon_control_type_id, create_time, update_time, create_user_id, update_user_id, emissions_id, emissions_local_id, is_valid, is_attention, intake_id, roof_id, is_hatchback, is_turbo, isdel, simple_name, is_show, new_price, revise_time, operate_time
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarModelSimple" resultMap="CarModelSimpleMap" 
+	parameterType="com.carvin.entity.CarModelSimple">
+		select
+		<include refid="CarModelSimpleColumns" />
+		from car_model_simple 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="brandId !=null">
+			           and brand_id=#{brandId}
+			      </if>
+                  <if test="mfrsId !=null">
+			           and mfrs_id=#{mfrsId}
+			      </if>
+                  <if test="seriesId !=null">
+			           and series_id=#{seriesId}
+			      </if>
+                  <if test="subName !=null and subName!=''">
+			           and sub_name=#{subName}
+			      </if>
+                  <if test="modelName !=null and modelName!=''">
+			           and model_name=#{modelName}
+			      </if>
+                  <if test="extraName !=null and extraName!=''">
+			           and extra_name=#{extraName}
+			      </if>
+                  <if test="name !=null and name!=''">
+			           and name=#{name}
+			      </if>
+                  <if test="fullName !=null and fullName!=''">
+			           and full_name=#{fullName}
+			      </if>
+                  <if test="eName !=null and eName!=''">
+			           and e_name=#{eName}
+			      </if>
+                  <if test="alias !=null and alias!=''">
+			           and alias=#{alias}
+			      </if>
+                  <if test="versionYear !=null and versionYear!=''">
+			           and version_year=#{versionYear}
+			      </if>
+                  <if test="versionDate !=null and versionDate!=''">
+			           and version_date=#{versionDate}
+			      </if>
+                  <if test="productionDate !=null and productionDate!=''">
+			           and production_date=#{productionDate}
+			      </if>
+                  <if test="endDate !=null and endDate!=''">
+			           and end_date=#{endDate}
+			      </if>
+                  <if test="productionYear !=null and productionYear!=''">
+			           and production_year=#{productionYear}
+			      </if>
+                  <if test="levelId !=null">
+			           and level_id=#{levelId}
+			      </if>
+                  <if test="catId !=null and catId!=''">
+			           and cat_id=#{catId}
+			      </if>
+                  <if test="redcodde !=null and redcodde!=''">
+			           and redcodde=#{redcodde}
+			      </if>
+                  <if test="photo !=null and photo!=''">
+			           and photo=#{photo}
+			      </if>
+                  <if test="intro !=null and intro!=''">
+			           and intro=#{intro}
+			      </if>
+                  <if test="displacement !=null">
+			           and displacement=#{displacement}
+			      </if>
+                  <if test="displacementExact !=null">
+			           and displacement_exact=#{displacementExact}
+			      </if>
+                  <if test="maxPowerPs !=null">
+			           and max_power_ps=#{maxPowerPs}
+			      </if>
+                  <if test="maxPowerKw !=null">
+			           and max_power_kw=#{maxPowerKw}
+			      </if>
+                  <if test="maxPowerRpm !=null and maxPowerRpm!=''">
+			           and max_power_rpm=#{maxPowerRpm}
+			      </if>
+                  <if test="maxTorqueNm !=null">
+			           and max_torque_nm=#{maxTorqueNm}
+			      </if>
+                  <if test="maxTorqueRpm !=null and maxTorqueRpm!=''">
+			           and max_torque_rpm=#{maxTorqueRpm}
+			      </if>
+                  <if test="transmissionTypeId !=null">
+			           and transmission_type_id=#{transmissionTypeId}
+			      </if>
+                  <if test="transmissionTypeName !=null and transmissionTypeName!=''">
+			           and transmission_type_name=#{transmissionTypeName}
+			      </if>
+                  <if test="transmissionShiftPssition !=null">
+			           and transmission_shift_pssition=#{transmissionShiftPssition}
+			      </if>
+                  <if test="length !=null">
+			           and length=#{length}
+			      </if>
+                  <if test="width !=null">
+			           and width=#{width}
+			      </if>
+                  <if test="height !=null">
+			           and height=#{height}
+			      </if>
+                  <if test="wheelbase !=null">
+			           and wheelbase=#{wheelbase}
+			      </if>
+                  <if test="frontWheelspan !=null">
+			           and front_wheelspan=#{frontWheelspan}
+			      </if>
+                  <if test="rearWheelspan !=null">
+			           and rear_wheelspan=#{rearWheelspan}
+			      </if>
+                  <if test="carBodyTypeId !=null">
+			           and car_body_type_id=#{carBodyTypeId}
+			      </if>
+                  <if test="carBodyStructureId !=null">
+			           and car_body_structure_id=#{carBodyStructureId}
+			      </if>
+                  <if test="maxSpeed !=null">
+			           and max_speed=#{maxSpeed}
+			      </if>
+                  <if test="speedupOfficial !=null">
+			           and speedup_official=#{speedupOfficial}
+			      </if>
+                  <if test="speedupTest !=null">
+			           and speedup_test=#{speedupTest}
+			      </if>
+                  <if test="braking !=null">
+			           and braking=#{braking}
+			      </if>
+                  <if test="fuelConsumptionOfficial !=null">
+			           and fuel_consumption_official=#{fuelConsumptionOfficial}
+			      </if>
+                  <if test="fuelConsumptionTest !=null">
+			           and fuel_consumption_test=#{fuelConsumptionTest}
+			      </if>
+                  <if test="warranty !=null and warranty!=''">
+			           and warranty=#{warranty}
+			      </if>
+                  <if test="weight !=null">
+			           and weight=#{weight}
+			      </if>
+                  <if test="weightRange !=null">
+			           and weight_range=#{weightRange}
+			      </if>
+                  <if test="weightTotal !=null">
+			           and weight_total=#{weightTotal}
+			      </if>
+                  <if test="doors !=null">
+			           and doors=#{doors}
+			      </if>
+                  <if test="seats !=null">
+			           and seats=#{seats}
+			      </if>
+                  <if test="fuelTank !=null">
+			           and fuel_tank=#{fuelTank}
+			      </if>
+                  <if test="trunk !=null">
+			           and trunk=#{trunk}
+			      </if>
+                  <if test="trunkTotal !=null">
+			           and trunk_total=#{trunkTotal}
+			      </if>
+                  <if test="dragCoefficient !=null and dragCoefficient!=''">
+			           and drag_coefficient=#{dragCoefficient}
+			      </if>
+                  <if test="carFuelTypeId !=null">
+			           and car_fuel_type_id=#{carFuelTypeId}
+			      </if>
+                  <if test="carFuelNumberId !=null">
+			           and car_fuel_number_id=#{carFuelNumberId}
+			      </if>
+                  <if test="engineModelName !=null and engineModelName!=''">
+			           and engine_model_name=#{engineModelName}
+			      </if>
+                  <if test="engineId !=null">
+			           and engine_id=#{engineId}
+			      </if>
+                  <if test="engineDirection !=null">
+			           and engine_direction=#{engineDirection}
+			      </if>
+                  <if test="enginePosition !=null">
+			           and engine_position=#{enginePosition}
+			      </if>
+                  <if test="compression !=null and compression!=''">
+			           and compression=#{compression}
+			      </if>
+                  <if test="cylinder !=null">
+			           and cylinder=#{cylinder}
+			      </if>
+                  <if test="drivingModeId !=null">
+			           and driving_mode_id=#{drivingModeId}
+			      </if>
+                  <if test="fourWheelDriveTypeId !=null">
+			           and four_wheel_drive_type_id=#{fourWheelDriveTypeId}
+			      </if>
+                  <if test="frontSuspensionTypeId !=null">
+			           and front_suspension_type_id=#{frontSuspensionTypeId}
+			      </if>
+                  <if test="rearSuspensionTypeId !=null">
+			           and rear_suspension_type_id=#{rearSuspensionTypeId}
+			      </if>
+                  <if test="centerDifferentialTypeId !=null">
+			           and center_differential_type_id=#{centerDifferentialTypeId}
+			      </if>
+                  <if test="boostTypeId !=null">
+			           and boost_type_id=#{boostTypeId}
+			      </if>
+                  <if test="carStructureId !=null">
+			           and car_structure_id=#{carStructureId}
+			      </if>
+                  <if test="frontBrakeTypeId !=null">
+			           and front_brake_type_id=#{frontBrakeTypeId}
+			      </if>
+                  <if test="rearBrakeTypeId !=null">
+			           and rear_brake_type_id=#{rearBrakeTypeId}
+			      </if>
+                  <if test="parkingBrakeTypeId !=null">
+			           and parking_brake_type_id=#{parkingBrakeTypeId}
+			      </if>
+                  <if test="tireId !=null">
+			           and tire_id=#{tireId}
+			      </if>
+                  <if test="spareTireTypeId !=null">
+			           and spare_tire_type_id=#{spareTireTypeId}
+			      </if>
+                  <if test="tireFront !=null and tireFront!=''">
+			           and tire_front=#{tireFront}
+			      </if>
+                  <if test="tireRear !=null and tireRear!=''">
+			           and tire_rear=#{tireRear}
+			      </if>
+                  <if test="spareTire !=null and spareTire!=''">
+			           and spare_tire=#{spareTire}
+			      </if>
+                  <if test="multiMediaTypeId !=null">
+			           and multi_media_type_id=#{multiMediaTypeId}
+			      </if>
+                  <if test="speakerNumberId !=null">
+			           and speaker_number_id=#{speakerNumberId}
+			      </if>
+                  <if test="seatReclineId !=null">
+			           and seat_recline_id=#{seatReclineId}
+			      </if>
+                  <if test="wheelAdjustTypeId !=null">
+			           and wheel_adjust_type_id=#{wheelAdjustTypeId}
+			      </if>
+                  <if test="babySeatId !=null">
+			           and baby_seat_id=#{babySeatId}
+			      </if>
+                  <if test="airconControlTypeId !=null">
+			           and aircon_control_type_id=#{airconControlTypeId}
+			      </if>
+                  <if test="createTime !=null and createTime!=''">
+			           and create_time=#{createTime}
+			      </if>
+                  <if test="updateTime !=null and updateTime!=''">
+			           and update_time=#{updateTime}
+			      </if>
+                  <if test="createUserId !=null">
+			           and create_user_id=#{createUserId}
+			      </if>
+                  <if test="updateUserId !=null">
+			           and update_user_id=#{updateUserId}
+			      </if>
+                  <if test="emissionsId !=null">
+			           and emissions_id=#{emissionsId}
+			      </if>
+                  <if test="emissionsLocalId !=null">
+			           and emissions_local_id=#{emissionsLocalId}
+			      </if>
+                  <if test="isValid !=null">
+			           and is_valid=#{isValid}
+			      </if>
+                  <if test="isAttention !=null">
+			           and is_attention=#{isAttention}
+			      </if>
+                  <if test="intakeId !=null">
+			           and intake_id=#{intakeId}
+			      </if>
+                  <if test="roofId !=null">
+			           and roof_id=#{roofId}
+			      </if>
+                  <if test="isHatchback !=null">
+			           and is_hatchback=#{isHatchback}
+			      </if>
+                  <if test="isTurbo !=null">
+			           and is_turbo=#{isTurbo}
+			      </if>
+                  <if test="isdel !=null">
+			           and isdel=#{isdel}
+			      </if>
+                  <if test="simpleName !=null and simpleName!=''">
+			           and simple_name=#{simpleName}
+			      </if>
+                  <if test="isShow !=null">
+			           and is_show=#{isShow}
+			      </if>
+                  <if test="newPrice !=null">
+			           and new_price=#{newPrice}
+			      </if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+			           and revise_time=#{reviseTime}
+			      </if>
+                  <if test="operateTime !=null and operateTime!=''">
+			           and operate_time=#{operateTime}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_model_simple的数量-->
+	<select id="getCarModelSimpleCount" resultType="Integer">
+		select count(*)
+		from car_model_simple
+	</select>
+	
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarModelSimple" useGeneratedKeys="true" keyProperty="id">
+		insert into car_model_simple
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="brandId !=null">
+		      brand_id,
+		    </if>
+                  <if test="mfrsId !=null">
+		      mfrs_id,
+		    </if>
+                  <if test="seriesId !=null">
+		      series_id,
+		    </if>
+                  <if test="subName !=null and subName!=''">
+		      sub_name,
+		    </if>
+                  <if test="modelName !=null and modelName!=''">
+		      model_name,
+		    </if>
+                  <if test="extraName !=null and extraName!=''">
+		      extra_name,
+		    </if>
+                  <if test="name !=null and name!=''">
+		      name,
+		    </if>
+                  <if test="fullName !=null and fullName!=''">
+		      full_name,
+		    </if>
+                  <if test="eName !=null and eName!=''">
+		      e_name,
+		    </if>
+                  <if test="alias !=null and alias!=''">
+		      alias,
+		    </if>
+                  <if test="versionYear !=null and versionYear!=''">
+		      version_year,
+		    </if>
+                  <if test="versionDate !=null and versionDate!=''">
+		      version_date,
+		    </if>
+                  <if test="productionDate !=null and productionDate!=''">
+		      production_date,
+		    </if>
+                  <if test="endDate !=null and endDate!=''">
+		      end_date,
+		    </if>
+                  <if test="productionYear !=null and productionYear!=''">
+		      production_year,
+		    </if>
+                  <if test="levelId !=null">
+		      level_id,
+		    </if>
+                  <if test="catId !=null and catId!=''">
+		      cat_id,
+		    </if>
+                  <if test="redcodde !=null and redcodde!=''">
+		      redcodde,
+		    </if>
+                  <if test="photo !=null and photo!=''">
+		      photo,
+		    </if>
+                  <if test="intro !=null and intro!=''">
+		      intro,
+		    </if>
+                  <if test="displacement !=null">
+		      displacement,
+		    </if>
+                  <if test="displacementExact !=null">
+		      displacement_exact,
+		    </if>
+                  <if test="maxPowerPs !=null">
+		      max_power_ps,
+		    </if>
+                  <if test="maxPowerKw !=null">
+		      max_power_kw,
+		    </if>
+                  <if test="maxPowerRpm !=null and maxPowerRpm!=''">
+		      max_power_rpm,
+		    </if>
+                  <if test="maxTorqueNm !=null">
+		      max_torque_nm,
+		    </if>
+                  <if test="maxTorqueRpm !=null and maxTorqueRpm!=''">
+		      max_torque_rpm,
+		    </if>
+                  <if test="transmissionTypeId !=null">
+		      transmission_type_id,
+		    </if>
+                  <if test="transmissionTypeName !=null and transmissionTypeName!=''">
+		      transmission_type_name,
+		    </if>
+                  <if test="transmissionShiftPssition !=null">
+		      transmission_shift_pssition,
+		    </if>
+                  <if test="length !=null">
+		      length,
+		    </if>
+                  <if test="width !=null">
+		      width,
+		    </if>
+                  <if test="height !=null">
+		      height,
+		    </if>
+                  <if test="wheelbase !=null">
+		      wheelbase,
+		    </if>
+                  <if test="frontWheelspan !=null">
+		      front_wheelspan,
+		    </if>
+                  <if test="rearWheelspan !=null">
+		      rear_wheelspan,
+		    </if>
+                  <if test="carBodyTypeId !=null">
+		      car_body_type_id,
+		    </if>
+                  <if test="carBodyStructureId !=null">
+		      car_body_structure_id,
+		    </if>
+                  <if test="maxSpeed !=null">
+		      max_speed,
+		    </if>
+                  <if test="speedupOfficial !=null">
+		      speedup_official,
+		    </if>
+                  <if test="speedupTest !=null">
+		      speedup_test,
+		    </if>
+                  <if test="braking !=null">
+		      braking,
+		    </if>
+                  <if test="fuelConsumptionOfficial !=null">
+		      fuel_consumption_official,
+		    </if>
+                  <if test="fuelConsumptionTest !=null">
+		      fuel_consumption_test,
+		    </if>
+                  <if test="warranty !=null and warranty!=''">
+		      warranty,
+		    </if>
+                  <if test="weight !=null">
+		      weight,
+		    </if>
+                  <if test="weightRange !=null">
+		      weight_range,
+		    </if>
+                  <if test="weightTotal !=null">
+		      weight_total,
+		    </if>
+                  <if test="doors !=null">
+		      doors,
+		    </if>
+                  <if test="seats !=null">
+		      seats,
+		    </if>
+                  <if test="fuelTank !=null">
+		      fuel_tank,
+		    </if>
+                  <if test="trunk !=null">
+		      trunk,
+		    </if>
+                  <if test="trunkTotal !=null">
+		      trunk_total,
+		    </if>
+                  <if test="dragCoefficient !=null and dragCoefficient!=''">
+		      drag_coefficient,
+		    </if>
+                  <if test="carFuelTypeId !=null">
+		      car_fuel_type_id,
+		    </if>
+                  <if test="carFuelNumberId !=null">
+		      car_fuel_number_id,
+		    </if>
+                  <if test="engineModelName !=null and engineModelName!=''">
+		      engine_model_name,
+		    </if>
+                  <if test="engineId !=null">
+		      engine_id,
+		    </if>
+                  <if test="engineDirection !=null">
+		      engine_direction,
+		    </if>
+                  <if test="enginePosition !=null">
+		      engine_position,
+		    </if>
+                  <if test="compression !=null and compression!=''">
+		      compression,
+		    </if>
+                  <if test="cylinder !=null">
+		      cylinder,
+		    </if>
+                  <if test="drivingModeId !=null">
+		      driving_mode_id,
+		    </if>
+                  <if test="fourWheelDriveTypeId !=null">
+		      four_wheel_drive_type_id,
+		    </if>
+                  <if test="frontSuspensionTypeId !=null">
+		      front_suspension_type_id,
+		    </if>
+                  <if test="rearSuspensionTypeId !=null">
+		      rear_suspension_type_id,
+		    </if>
+                  <if test="centerDifferentialTypeId !=null">
+		      center_differential_type_id,
+		    </if>
+                  <if test="boostTypeId !=null">
+		      boost_type_id,
+		    </if>
+                  <if test="carStructureId !=null">
+		      car_structure_id,
+		    </if>
+                  <if test="frontBrakeTypeId !=null">
+		      front_brake_type_id,
+		    </if>
+                  <if test="rearBrakeTypeId !=null">
+		      rear_brake_type_id,
+		    </if>
+                  <if test="parkingBrakeTypeId !=null">
+		      parking_brake_type_id,
+		    </if>
+                  <if test="tireId !=null">
+		      tire_id,
+		    </if>
+                  <if test="spareTireTypeId !=null">
+		      spare_tire_type_id,
+		    </if>
+                  <if test="tireFront !=null and tireFront!=''">
+		      tire_front,
+		    </if>
+                  <if test="tireRear !=null and tireRear!=''">
+		      tire_rear,
+		    </if>
+                  <if test="spareTire !=null and spareTire!=''">
+		      spare_tire,
+		    </if>
+                  <if test="multiMediaTypeId !=null">
+		      multi_media_type_id,
+		    </if>
+                  <if test="speakerNumberId !=null">
+		      speaker_number_id,
+		    </if>
+                  <if test="seatReclineId !=null">
+		      seat_recline_id,
+		    </if>
+                  <if test="wheelAdjustTypeId !=null">
+		      wheel_adjust_type_id,
+		    </if>
+                  <if test="babySeatId !=null">
+		      baby_seat_id,
+		    </if>
+                  <if test="airconControlTypeId !=null">
+		      aircon_control_type_id,
+		    </if>
+                  <if test="createTime !=null and createTime!=''">
+		      create_time,
+		    </if>
+                  <if test="updateTime !=null and updateTime!=''">
+		      update_time,
+		    </if>
+                  <if test="createUserId !=null">
+		      create_user_id,
+		    </if>
+                  <if test="updateUserId !=null">
+		      update_user_id,
+		    </if>
+                  <if test="emissionsId !=null">
+		      emissions_id,
+		    </if>
+                  <if test="emissionsLocalId !=null">
+		      emissions_local_id,
+		    </if>
+                  <if test="isValid !=null">
+		      is_valid,
+		    </if>
+                  <if test="isAttention !=null">
+		      is_attention,
+		    </if>
+                  <if test="intakeId !=null">
+		      intake_id,
+		    </if>
+                  <if test="roofId !=null">
+		      roof_id,
+		    </if>
+                  <if test="isHatchback !=null">
+		      is_hatchback,
+		    </if>
+                  <if test="isTurbo !=null">
+		      is_turbo,
+		    </if>
+                  <if test="isdel !=null">
+		      isdel,
+		    </if>
+                  <if test="simpleName !=null and simpleName!=''">
+		      simple_name,
+		    </if>
+                  <if test="isShow !=null">
+		      is_show,
+		    </if>
+                  <if test="newPrice !=null">
+		      new_price,
+		    </if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+		      revise_time,
+		    </if>
+                  <if test="operateTime !=null and operateTime!=''">
+		      operate_time,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		     <if test="brandId !=null">
+		     #{brandId},
+		    </if>
+		     <if test="mfrsId !=null">
+		     #{mfrsId},
+		    </if>
+		     <if test="seriesId !=null">
+		     #{seriesId},
+		    </if>
+		    <if test="subName !=null and subName!=''">
+		     #{subName},
+		    </if>
+		    <if test="modelName !=null and modelName!=''">
+		     #{modelName},
+		    </if>
+		    <if test="extraName !=null and extraName!=''">
+		     #{extraName},
+		    </if>
+		    <if test="name !=null and name!=''">
+		     #{name},
+		    </if>
+		    <if test="fullName !=null and fullName!=''">
+		     #{fullName},
+		    </if>
+		    <if test="eName !=null and eName!=''">
+		     #{eName},
+		    </if>
+		    <if test="alias !=null and alias!=''">
+		     #{alias},
+		    </if>
+		    <if test="versionYear !=null and versionYear!=''">
+		     #{versionYear},
+		    </if>
+		    <if test="versionDate !=null and versionDate!=''">
+		     #{versionDate},
+		    </if>
+		    <if test="productionDate !=null and productionDate!=''">
+		     #{productionDate},
+		    </if>
+		    <if test="endDate !=null and endDate!=''">
+		     #{endDate},
+		    </if>
+		    <if test="productionYear !=null and productionYear!=''">
+		     #{productionYear},
+		    </if>
+		     <if test="levelId !=null">
+		     #{levelId},
+		    </if>
+		    <if test="catId !=null and catId!=''">
+		     #{catId},
+		    </if>
+		    <if test="redcodde !=null and redcodde!=''">
+		     #{redcodde},
+		    </if>
+		    <if test="photo !=null and photo!=''">
+		     #{photo},
+		    </if>
+		    <if test="intro !=null and intro!=''">
+		     #{intro},
+		    </if>
+		     <if test="displacement !=null">
+		     #{displacement},
+		    </if>
+		     <if test="displacementExact !=null">
+		     #{displacementExact},
+		    </if>
+		     <if test="maxPowerPs !=null">
+		     #{maxPowerPs},
+		    </if>
+		     <if test="maxPowerKw !=null">
+		     #{maxPowerKw},
+		    </if>
+		    <if test="maxPowerRpm !=null and maxPowerRpm!=''">
+		     #{maxPowerRpm},
+		    </if>
+		     <if test="maxTorqueNm !=null">
+		     #{maxTorqueNm},
+		    </if>
+		    <if test="maxTorqueRpm !=null and maxTorqueRpm!=''">
+		     #{maxTorqueRpm},
+		    </if>
+		     <if test="transmissionTypeId !=null">
+		     #{transmissionTypeId},
+		    </if>
+		    <if test="transmissionTypeName !=null and transmissionTypeName!=''">
+		     #{transmissionTypeName},
+		    </if>
+		     <if test="transmissionShiftPssition !=null">
+		     #{transmissionShiftPssition},
+		    </if>
+		     <if test="length !=null">
+		     #{length},
+		    </if>
+		     <if test="width !=null">
+		     #{width},
+		    </if>
+		     <if test="height !=null">
+		     #{height},
+		    </if>
+		     <if test="wheelbase !=null">
+		     #{wheelbase},
+		    </if>
+		     <if test="frontWheelspan !=null">
+		     #{frontWheelspan},
+		    </if>
+		     <if test="rearWheelspan !=null">
+		     #{rearWheelspan},
+		    </if>
+		     <if test="carBodyTypeId !=null">
+		     #{carBodyTypeId},
+		    </if>
+		     <if test="carBodyStructureId !=null">
+		     #{carBodyStructureId},
+		    </if>
+		     <if test="maxSpeed !=null">
+		     #{maxSpeed},
+		    </if>
+		     <if test="speedupOfficial !=null">
+		     #{speedupOfficial},
+		    </if>
+		     <if test="speedupTest !=null">
+		     #{speedupTest},
+		    </if>
+		     <if test="braking !=null">
+		     #{braking},
+		    </if>
+		     <if test="fuelConsumptionOfficial !=null">
+		     #{fuelConsumptionOfficial},
+		    </if>
+		     <if test="fuelConsumptionTest !=null">
+		     #{fuelConsumptionTest},
+		    </if>
+		    <if test="warranty !=null and warranty!=''">
+		     #{warranty},
+		    </if>
+		     <if test="weight !=null">
+		     #{weight},
+		    </if>
+		     <if test="weightRange !=null">
+		     #{weightRange},
+		    </if>
+		     <if test="weightTotal !=null">
+		     #{weightTotal},
+		    </if>
+		     <if test="doors !=null">
+		     #{doors},
+		    </if>
+		     <if test="seats !=null">
+		     #{seats},
+		    </if>
+		     <if test="fuelTank !=null">
+		     #{fuelTank},
+		    </if>
+		     <if test="trunk !=null">
+		     #{trunk},
+		    </if>
+		     <if test="trunkTotal !=null">
+		     #{trunkTotal},
+		    </if>
+		    <if test="dragCoefficient !=null and dragCoefficient!=''">
+		     #{dragCoefficient},
+		    </if>
+		     <if test="carFuelTypeId !=null">
+		     #{carFuelTypeId},
+		    </if>
+		     <if test="carFuelNumberId !=null">
+		     #{carFuelNumberId},
+		    </if>
+		    <if test="engineModelName !=null and engineModelName!=''">
+		     #{engineModelName},
+		    </if>
+		     <if test="engineId !=null">
+		     #{engineId},
+		    </if>
+		     <if test="engineDirection !=null">
+		     #{engineDirection},
+		    </if>
+		     <if test="enginePosition !=null">
+		     #{enginePosition},
+		    </if>
+		    <if test="compression !=null and compression!=''">
+		     #{compression},
+		    </if>
+		     <if test="cylinder !=null">
+		     #{cylinder},
+		    </if>
+		     <if test="drivingModeId !=null">
+		     #{drivingModeId},
+		    </if>
+		     <if test="fourWheelDriveTypeId !=null">
+		     #{fourWheelDriveTypeId},
+		    </if>
+		     <if test="frontSuspensionTypeId !=null">
+		     #{frontSuspensionTypeId},
+		    </if>
+		     <if test="rearSuspensionTypeId !=null">
+		     #{rearSuspensionTypeId},
+		    </if>
+		     <if test="centerDifferentialTypeId !=null">
+		     #{centerDifferentialTypeId},
+		    </if>
+		     <if test="boostTypeId !=null">
+		     #{boostTypeId},
+		    </if>
+		     <if test="carStructureId !=null">
+		     #{carStructureId},
+		    </if>
+		     <if test="frontBrakeTypeId !=null">
+		     #{frontBrakeTypeId},
+		    </if>
+		     <if test="rearBrakeTypeId !=null">
+		     #{rearBrakeTypeId},
+		    </if>
+		     <if test="parkingBrakeTypeId !=null">
+		     #{parkingBrakeTypeId},
+		    </if>
+		     <if test="tireId !=null">
+		     #{tireId},
+		    </if>
+		     <if test="spareTireTypeId !=null">
+		     #{spareTireTypeId},
+		    </if>
+		    <if test="tireFront !=null and tireFront!=''">
+		     #{tireFront},
+		    </if>
+		    <if test="tireRear !=null and tireRear!=''">
+		     #{tireRear},
+		    </if>
+		    <if test="spareTire !=null and spareTire!=''">
+		     #{spareTire},
+		    </if>
+		     <if test="multiMediaTypeId !=null">
+		     #{multiMediaTypeId},
+		    </if>
+		     <if test="speakerNumberId !=null">
+		     #{speakerNumberId},
+		    </if>
+		     <if test="seatReclineId !=null">
+		     #{seatReclineId},
+		    </if>
+		     <if test="wheelAdjustTypeId !=null">
+		     #{wheelAdjustTypeId},
+		    </if>
+		     <if test="babySeatId !=null">
+		     #{babySeatId},
+		    </if>
+		     <if test="airconControlTypeId !=null">
+		     #{airconControlTypeId},
+		    </if>
+		    <if test="createTime !=null and createTime!=''">
+		     #{createTime},
+		    </if>
+		    <if test="updateTime !=null and updateTime!=''">
+		     #{updateTime},
+		    </if>
+		     <if test="createUserId !=null">
+		     #{createUserId},
+		    </if>
+		     <if test="updateUserId !=null">
+		     #{updateUserId},
+		    </if>
+		     <if test="emissionsId !=null">
+		     #{emissionsId},
+		    </if>
+		     <if test="emissionsLocalId !=null">
+		     #{emissionsLocalId},
+		    </if>
+		     <if test="isValid !=null">
+		     #{isValid},
+		    </if>
+		     <if test="isAttention !=null">
+		     #{isAttention},
+		    </if>
+		     <if test="intakeId !=null">
+		     #{intakeId},
+		    </if>
+		     <if test="roofId !=null">
+		     #{roofId},
+		    </if>
+		     <if test="isHatchback !=null">
+		     #{isHatchback},
+		    </if>
+		     <if test="isTurbo !=null">
+		     #{isTurbo},
+		    </if>
+		     <if test="isdel !=null">
+		     #{isdel},
+		    </if>
+		    <if test="simpleName !=null and simpleName!=''">
+		     #{simpleName},
+		    </if>
+		     <if test="isShow !=null">
+		     #{isShow},
+		    </if>
+		     <if test="newPrice !=null">
+		     #{newPrice},
+		    </if>
+		    <if test="reviseTime !=null and reviseTime!=''">
+		     #{reviseTime},
+		    </if>
+		    <if test="operateTime !=null and operateTime!=''">
+		     #{operateTime},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarModelSimpleById" parameterType="Integer" resultMap="CarModelSimpleMap">
+		select 
+		<include refid="CarModelSimpleColumns" /> 
+		from car_model_simple where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 car_model_simple  -->
+	<select id="listCarModelSimple" resultMap="CarModelSimpleMap" parameterType="com.carvin.entity.CarModelSimple">
+		select
+		<include refid="CarModelSimpleColumns" />
+		from car_model_simple 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="brandId !=null">
+				and brand_id=#{brandId}
+			</if>
+                  <if test="mfrsId !=null">
+				and mfrs_id=#{mfrsId}
+			</if>
+                  <if test="seriesId !=null">
+				and series_id=#{seriesId}
+			</if>
+                  <if test="subName !=null and subName!=''">
+				and sub_name=#{subName}
+			</if>
+                  <if test="modelName !=null and modelName!=''">
+				and model_name=#{modelName}
+			</if>
+                  <if test="extraName !=null and extraName!=''">
+				and extra_name=#{extraName}
+			</if>
+                  <if test="name !=null and name!=''">
+				and name=#{name}
+			</if>
+                  <if test="fullName !=null and fullName!=''">
+				and full_name=#{fullName}
+			</if>
+                  <if test="eName !=null and eName!=''">
+				and e_name=#{eName}
+			</if>
+                  <if test="alias !=null and alias!=''">
+				and alias=#{alias}
+			</if>
+                  <if test="versionYear !=null and versionYear!=''">
+				and version_year=#{versionYear}
+			</if>
+                  <if test="versionDate !=null and versionDate!=''">
+				and version_date=#{versionDate}
+			</if>
+                  <if test="productionDate !=null and productionDate!=''">
+				and production_date=#{productionDate}
+			</if>
+                  <if test="endDate !=null and endDate!=''">
+				and end_date=#{endDate}
+			</if>
+                  <if test="productionYear !=null and productionYear!=''">
+				and production_year=#{productionYear}
+			</if>
+                  <if test="levelId !=null">
+				and level_id=#{levelId}
+			</if>
+                  <if test="catId !=null and catId!=''">
+				and cat_id=#{catId}
+			</if>
+                  <if test="redcodde !=null and redcodde!=''">
+				and redcodde=#{redcodde}
+			</if>
+                  <if test="photo !=null and photo!=''">
+				and photo=#{photo}
+			</if>
+                  <if test="intro !=null and intro!=''">
+				and intro=#{intro}
+			</if>
+                  <if test="displacement !=null">
+				and displacement=#{displacement}
+			</if>
+                  <if test="displacementExact !=null">
+				and displacement_exact=#{displacementExact}
+			</if>
+                  <if test="maxPowerPs !=null">
+				and max_power_ps=#{maxPowerPs}
+			</if>
+                  <if test="maxPowerKw !=null">
+				and max_power_kw=#{maxPowerKw}
+			</if>
+                  <if test="maxPowerRpm !=null and maxPowerRpm!=''">
+				and max_power_rpm=#{maxPowerRpm}
+			</if>
+                  <if test="maxTorqueNm !=null">
+				and max_torque_nm=#{maxTorqueNm}
+			</if>
+                  <if test="maxTorqueRpm !=null and maxTorqueRpm!=''">
+				and max_torque_rpm=#{maxTorqueRpm}
+			</if>
+                  <if test="transmissionTypeId !=null">
+				and transmission_type_id=#{transmissionTypeId}
+			</if>
+                  <if test="transmissionTypeName !=null and transmissionTypeName!=''">
+				and transmission_type_name=#{transmissionTypeName}
+			</if>
+                  <if test="transmissionShiftPssition !=null">
+				and transmission_shift_pssition=#{transmissionShiftPssition}
+			</if>
+                  <if test="length !=null">
+				and length=#{length}
+			</if>
+                  <if test="width !=null">
+				and width=#{width}
+			</if>
+                  <if test="height !=null">
+				and height=#{height}
+			</if>
+                  <if test="wheelbase !=null">
+				and wheelbase=#{wheelbase}
+			</if>
+                  <if test="frontWheelspan !=null">
+				and front_wheelspan=#{frontWheelspan}
+			</if>
+                  <if test="rearWheelspan !=null">
+				and rear_wheelspan=#{rearWheelspan}
+			</if>
+                  <if test="carBodyTypeId !=null">
+				and car_body_type_id=#{carBodyTypeId}
+			</if>
+                  <if test="carBodyStructureId !=null">
+				and car_body_structure_id=#{carBodyStructureId}
+			</if>
+                  <if test="maxSpeed !=null">
+				and max_speed=#{maxSpeed}
+			</if>
+                  <if test="speedupOfficial !=null">
+				and speedup_official=#{speedupOfficial}
+			</if>
+                  <if test="speedupTest !=null">
+				and speedup_test=#{speedupTest}
+			</if>
+                  <if test="braking !=null">
+				and braking=#{braking}
+			</if>
+                  <if test="fuelConsumptionOfficial !=null">
+				and fuel_consumption_official=#{fuelConsumptionOfficial}
+			</if>
+                  <if test="fuelConsumptionTest !=null">
+				and fuel_consumption_test=#{fuelConsumptionTest}
+			</if>
+                  <if test="warranty !=null and warranty!=''">
+				and warranty=#{warranty}
+			</if>
+                  <if test="weight !=null">
+				and weight=#{weight}
+			</if>
+                  <if test="weightRange !=null">
+				and weight_range=#{weightRange}
+			</if>
+                  <if test="weightTotal !=null">
+				and weight_total=#{weightTotal}
+			</if>
+                  <if test="doors !=null">
+				and doors=#{doors}
+			</if>
+                  <if test="seats !=null">
+				and seats=#{seats}
+			</if>
+                  <if test="fuelTank !=null">
+				and fuel_tank=#{fuelTank}
+			</if>
+                  <if test="trunk !=null">
+				and trunk=#{trunk}
+			</if>
+                  <if test="trunkTotal !=null">
+				and trunk_total=#{trunkTotal}
+			</if>
+                  <if test="dragCoefficient !=null and dragCoefficient!=''">
+				and drag_coefficient=#{dragCoefficient}
+			</if>
+                  <if test="carFuelTypeId !=null">
+				and car_fuel_type_id=#{carFuelTypeId}
+			</if>
+                  <if test="carFuelNumberId !=null">
+				and car_fuel_number_id=#{carFuelNumberId}
+			</if>
+                  <if test="engineModelName !=null and engineModelName!=''">
+				and engine_model_name=#{engineModelName}
+			</if>
+                  <if test="engineId !=null">
+				and engine_id=#{engineId}
+			</if>
+                  <if test="engineDirection !=null">
+				and engine_direction=#{engineDirection}
+			</if>
+                  <if test="enginePosition !=null">
+				and engine_position=#{enginePosition}
+			</if>
+                  <if test="compression !=null and compression!=''">
+				and compression=#{compression}
+			</if>
+                  <if test="cylinder !=null">
+				and cylinder=#{cylinder}
+			</if>
+                  <if test="drivingModeId !=null">
+				and driving_mode_id=#{drivingModeId}
+			</if>
+                  <if test="fourWheelDriveTypeId !=null">
+				and four_wheel_drive_type_id=#{fourWheelDriveTypeId}
+			</if>
+                  <if test="frontSuspensionTypeId !=null">
+				and front_suspension_type_id=#{frontSuspensionTypeId}
+			</if>
+                  <if test="rearSuspensionTypeId !=null">
+				and rear_suspension_type_id=#{rearSuspensionTypeId}
+			</if>
+                  <if test="centerDifferentialTypeId !=null">
+				and center_differential_type_id=#{centerDifferentialTypeId}
+			</if>
+                  <if test="boostTypeId !=null">
+				and boost_type_id=#{boostTypeId}
+			</if>
+                  <if test="carStructureId !=null">
+				and car_structure_id=#{carStructureId}
+			</if>
+                  <if test="frontBrakeTypeId !=null">
+				and front_brake_type_id=#{frontBrakeTypeId}
+			</if>
+                  <if test="rearBrakeTypeId !=null">
+				and rear_brake_type_id=#{rearBrakeTypeId}
+			</if>
+                  <if test="parkingBrakeTypeId !=null">
+				and parking_brake_type_id=#{parkingBrakeTypeId}
+			</if>
+                  <if test="tireId !=null">
+				and tire_id=#{tireId}
+			</if>
+                  <if test="spareTireTypeId !=null">
+				and spare_tire_type_id=#{spareTireTypeId}
+			</if>
+                  <if test="tireFront !=null and tireFront!=''">
+				and tire_front=#{tireFront}
+			</if>
+                  <if test="tireRear !=null and tireRear!=''">
+				and tire_rear=#{tireRear}
+			</if>
+                  <if test="spareTire !=null and spareTire!=''">
+				and spare_tire=#{spareTire}
+			</if>
+                  <if test="multiMediaTypeId !=null">
+				and multi_media_type_id=#{multiMediaTypeId}
+			</if>
+                  <if test="speakerNumberId !=null">
+				and speaker_number_id=#{speakerNumberId}
+			</if>
+                  <if test="seatReclineId !=null">
+				and seat_recline_id=#{seatReclineId}
+			</if>
+                  <if test="wheelAdjustTypeId !=null">
+				and wheel_adjust_type_id=#{wheelAdjustTypeId}
+			</if>
+                  <if test="babySeatId !=null">
+				and baby_seat_id=#{babySeatId}
+			</if>
+                  <if test="airconControlTypeId !=null">
+				and aircon_control_type_id=#{airconControlTypeId}
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+				and create_time=#{createTime}
+			</if>
+                  <if test="updateTime !=null and updateTime!=''">
+				and update_time=#{updateTime}
+			</if>
+                  <if test="createUserId !=null">
+				and create_user_id=#{createUserId}
+			</if>
+                  <if test="updateUserId !=null">
+				and update_user_id=#{updateUserId}
+			</if>
+                  <if test="emissionsId !=null">
+				and emissions_id=#{emissionsId}
+			</if>
+                  <if test="emissionsLocalId !=null">
+				and emissions_local_id=#{emissionsLocalId}
+			</if>
+                  <if test="isValid !=null">
+				and is_valid=#{isValid}
+			</if>
+                  <if test="isAttention !=null">
+				and is_attention=#{isAttention}
+			</if>
+                  <if test="intakeId !=null">
+				and intake_id=#{intakeId}
+			</if>
+                  <if test="roofId !=null">
+				and roof_id=#{roofId}
+			</if>
+                  <if test="isHatchback !=null">
+				and is_hatchback=#{isHatchback}
+			</if>
+                  <if test="isTurbo !=null">
+				and is_turbo=#{isTurbo}
+			</if>
+                  <if test="isdel !=null">
+				and isdel=#{isdel}
+			</if>
+                  <if test="simpleName !=null and simpleName!=''">
+				and simple_name=#{simpleName}
+			</if>
+                  <if test="isShow !=null">
+				and is_show=#{isShow}
+			</if>
+                  <if test="newPrice !=null">
+				and new_price=#{newPrice}
+			</if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+				and revise_time=#{reviseTime}
+			</if>
+                  <if test="operateTime !=null and operateTime!=''">
+				and operate_time=#{operateTime}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarModelSimple" parameterType="com.carvin.entity.CarModelSimple">
+		UPDATE car_model_simple 
+		SET
+		id=#{id}, brand_id=#{brandId}, mfrs_id=#{mfrsId}, series_id=#{seriesId}, sub_name=#{subName}, model_name=#{modelName}, extra_name=#{extraName}, name=#{name}, full_name=#{fullName}, e_name=#{eName}, alias=#{alias}, version_year=#{versionYear}, version_date=#{versionDate}, production_date=#{productionDate}, end_date=#{endDate}, production_year=#{productionYear}, level_id=#{levelId}, cat_id=#{catId}, redcodde=#{redcodde}, photo=#{photo}, intro=#{intro}, displacement=#{displacement}, displacement_exact=#{displacementExact}, max_power_ps=#{maxPowerPs}, max_power_kw=#{maxPowerKw}, max_power_rpm=#{maxPowerRpm}, max_torque_nm=#{maxTorqueNm}, max_torque_rpm=#{maxTorqueRpm}, transmission_type_id=#{transmissionTypeId}, transmission_type_name=#{transmissionTypeName}, transmission_shift_pssition=#{transmissionShiftPssition}, length=#{length}, width=#{width}, height=#{height}, wheelbase=#{wheelbase}, front_wheelspan=#{frontWheelspan}, rear_wheelspan=#{rearWheelspan}, car_body_type_id=#{carBodyTypeId}, car_body_structure_id=#{carBodyStructureId}, max_speed=#{maxSpeed}, speedup_official=#{speedupOfficial}, speedup_test=#{speedupTest}, braking=#{braking}, fuel_consumption_official=#{fuelConsumptionOfficial}, fuel_consumption_test=#{fuelConsumptionTest}, warranty=#{warranty}, weight=#{weight}, weight_range=#{weightRange}, weight_total=#{weightTotal}, doors=#{doors}, seats=#{seats}, fuel_tank=#{fuelTank}, trunk=#{trunk}, trunk_total=#{trunkTotal}, drag_coefficient=#{dragCoefficient}, car_fuel_type_id=#{carFuelTypeId}, car_fuel_number_id=#{carFuelNumberId}, engine_model_name=#{engineModelName}, engine_id=#{engineId}, engine_direction=#{engineDirection}, engine_position=#{enginePosition}, compression=#{compression}, cylinder=#{cylinder}, driving_mode_id=#{drivingModeId}, four_wheel_drive_type_id=#{fourWheelDriveTypeId}, front_suspension_type_id=#{frontSuspensionTypeId}, rear_suspension_type_id=#{rearSuspensionTypeId}, center_differential_type_id=#{centerDifferentialTypeId}, boost_type_id=#{boostTypeId}, car_structure_id=#{carStructureId}, front_brake_type_id=#{frontBrakeTypeId}, rear_brake_type_id=#{rearBrakeTypeId}, parking_brake_type_id=#{parkingBrakeTypeId}, tire_id=#{tireId}, spare_tire_type_id=#{spareTireTypeId}, tire_front=#{tireFront}, tire_rear=#{tireRear}, spare_tire=#{spareTire}, multi_media_type_id=#{multiMediaTypeId}, speaker_number_id=#{speakerNumberId}, seat_recline_id=#{seatReclineId}, wheel_adjust_type_id=#{wheelAdjustTypeId}, baby_seat_id=#{babySeatId}, aircon_control_type_id=#{airconControlTypeId}, create_time=#{createTime}, update_time=#{updateTime}, create_user_id=#{createUserId}, update_user_id=#{updateUserId}, emissions_id=#{emissionsId}, emissions_local_id=#{emissionsLocalId}, is_valid=#{isValid}, is_attention=#{isAttention}, intake_id=#{intakeId}, roof_id=#{roofId}, is_hatchback=#{isHatchback}, is_turbo=#{isTurbo}, isdel=#{isdel}, simple_name=#{simpleName}, is_show=#{isShow}, new_price=#{newPrice}, revise_time=#{reviseTime}, operate_time=#{operateTime}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarModelSimple" >
+	  UPDATE car_model_simple 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="brandId !=null">
+			    brand_id =  #{brandId},
+			</if>
+                  <if test="mfrsId !=null">
+			    mfrs_id =  #{mfrsId},
+			</if>
+                  <if test="seriesId !=null">
+			    series_id =  #{seriesId},
+			</if>
+                  <if test="subName !=null and subName!=''">
+			    sub_name =  #{subName},
+			</if>
+                  <if test="modelName !=null and modelName!=''">
+			    model_name =  #{modelName},
+			</if>
+                  <if test="extraName !=null and extraName!=''">
+			    extra_name =  #{extraName},
+			</if>
+                  <if test="name !=null and name!=''">
+			    name =  #{name},
+			</if>
+                  <if test="fullName !=null and fullName!=''">
+			    full_name =  #{fullName},
+			</if>
+                  <if test="eName !=null and eName!=''">
+			    e_name =  #{eName},
+			</if>
+                  <if test="alias !=null and alias!=''">
+			    alias =  #{alias},
+			</if>
+                  <if test="versionYear !=null and versionYear!=''">
+			    version_year =  #{versionYear},
+			</if>
+                  <if test="versionDate !=null and versionDate!=''">
+			    version_date =  #{versionDate},
+			</if>
+                  <if test="productionDate !=null and productionDate!=''">
+			    production_date =  #{productionDate},
+			</if>
+                  <if test="endDate !=null and endDate!=''">
+			    end_date =  #{endDate},
+			</if>
+                  <if test="productionYear !=null and productionYear!=''">
+			    production_year =  #{productionYear},
+			</if>
+                  <if test="levelId !=null">
+			    level_id =  #{levelId},
+			</if>
+                  <if test="catId !=null and catId!=''">
+			    cat_id =  #{catId},
+			</if>
+                  <if test="redcodde !=null and redcodde!=''">
+			    redcodde =  #{redcodde},
+			</if>
+                  <if test="photo !=null and photo!=''">
+			    photo =  #{photo},
+			</if>
+                  <if test="intro !=null and intro!=''">
+			    intro =  #{intro},
+			</if>
+                  <if test="displacement !=null">
+			    displacement =  #{displacement},
+			</if>
+                  <if test="displacementExact !=null">
+			    displacement_exact =  #{displacementExact},
+			</if>
+                  <if test="maxPowerPs !=null">
+			    max_power_ps =  #{maxPowerPs},
+			</if>
+                  <if test="maxPowerKw !=null">
+			    max_power_kw =  #{maxPowerKw},
+			</if>
+                  <if test="maxPowerRpm !=null and maxPowerRpm!=''">
+			    max_power_rpm =  #{maxPowerRpm},
+			</if>
+                  <if test="maxTorqueNm !=null">
+			    max_torque_nm =  #{maxTorqueNm},
+			</if>
+                  <if test="maxTorqueRpm !=null and maxTorqueRpm!=''">
+			    max_torque_rpm =  #{maxTorqueRpm},
+			</if>
+                  <if test="transmissionTypeId !=null">
+			    transmission_type_id =  #{transmissionTypeId},
+			</if>
+                  <if test="transmissionTypeName !=null and transmissionTypeName!=''">
+			    transmission_type_name =  #{transmissionTypeName},
+			</if>
+                  <if test="transmissionShiftPssition !=null">
+			    transmission_shift_pssition =  #{transmissionShiftPssition},
+			</if>
+                  <if test="length !=null">
+			    length =  #{length},
+			</if>
+                  <if test="width !=null">
+			    width =  #{width},
+			</if>
+                  <if test="height !=null">
+			    height =  #{height},
+			</if>
+                  <if test="wheelbase !=null">
+			    wheelbase =  #{wheelbase},
+			</if>
+                  <if test="frontWheelspan !=null">
+			    front_wheelspan =  #{frontWheelspan},
+			</if>
+                  <if test="rearWheelspan !=null">
+			    rear_wheelspan =  #{rearWheelspan},
+			</if>
+                  <if test="carBodyTypeId !=null">
+			    car_body_type_id =  #{carBodyTypeId},
+			</if>
+                  <if test="carBodyStructureId !=null">
+			    car_body_structure_id =  #{carBodyStructureId},
+			</if>
+                  <if test="maxSpeed !=null">
+			    max_speed =  #{maxSpeed},
+			</if>
+                  <if test="speedupOfficial !=null">
+			    speedup_official =  #{speedupOfficial},
+			</if>
+                  <if test="speedupTest !=null">
+			    speedup_test =  #{speedupTest},
+			</if>
+                  <if test="braking !=null">
+			    braking =  #{braking},
+			</if>
+                  <if test="fuelConsumptionOfficial !=null">
+			    fuel_consumption_official =  #{fuelConsumptionOfficial},
+			</if>
+                  <if test="fuelConsumptionTest !=null">
+			    fuel_consumption_test =  #{fuelConsumptionTest},
+			</if>
+                  <if test="warranty !=null and warranty!=''">
+			    warranty =  #{warranty},
+			</if>
+                  <if test="weight !=null">
+			    weight =  #{weight},
+			</if>
+                  <if test="weightRange !=null">
+			    weight_range =  #{weightRange},
+			</if>
+                  <if test="weightTotal !=null">
+			    weight_total =  #{weightTotal},
+			</if>
+                  <if test="doors !=null">
+			    doors =  #{doors},
+			</if>
+                  <if test="seats !=null">
+			    seats =  #{seats},
+			</if>
+                  <if test="fuelTank !=null">
+			    fuel_tank =  #{fuelTank},
+			</if>
+                  <if test="trunk !=null">
+			    trunk =  #{trunk},
+			</if>
+                  <if test="trunkTotal !=null">
+			    trunk_total =  #{trunkTotal},
+			</if>
+                  <if test="dragCoefficient !=null and dragCoefficient!=''">
+			    drag_coefficient =  #{dragCoefficient},
+			</if>
+                  <if test="carFuelTypeId !=null">
+			    car_fuel_type_id =  #{carFuelTypeId},
+			</if>
+                  <if test="carFuelNumberId !=null">
+			    car_fuel_number_id =  #{carFuelNumberId},
+			</if>
+                  <if test="engineModelName !=null and engineModelName!=''">
+			    engine_model_name =  #{engineModelName},
+			</if>
+                  <if test="engineId !=null">
+			    engine_id =  #{engineId},
+			</if>
+                  <if test="engineDirection !=null">
+			    engine_direction =  #{engineDirection},
+			</if>
+                  <if test="enginePosition !=null">
+			    engine_position =  #{enginePosition},
+			</if>
+                  <if test="compression !=null and compression!=''">
+			    compression =  #{compression},
+			</if>
+                  <if test="cylinder !=null">
+			    cylinder =  #{cylinder},
+			</if>
+                  <if test="drivingModeId !=null">
+			    driving_mode_id =  #{drivingModeId},
+			</if>
+                  <if test="fourWheelDriveTypeId !=null">
+			    four_wheel_drive_type_id =  #{fourWheelDriveTypeId},
+			</if>
+                  <if test="frontSuspensionTypeId !=null">
+			    front_suspension_type_id =  #{frontSuspensionTypeId},
+			</if>
+                  <if test="rearSuspensionTypeId !=null">
+			    rear_suspension_type_id =  #{rearSuspensionTypeId},
+			</if>
+                  <if test="centerDifferentialTypeId !=null">
+			    center_differential_type_id =  #{centerDifferentialTypeId},
+			</if>
+                  <if test="boostTypeId !=null">
+			    boost_type_id =  #{boostTypeId},
+			</if>
+                  <if test="carStructureId !=null">
+			    car_structure_id =  #{carStructureId},
+			</if>
+                  <if test="frontBrakeTypeId !=null">
+			    front_brake_type_id =  #{frontBrakeTypeId},
+			</if>
+                  <if test="rearBrakeTypeId !=null">
+			    rear_brake_type_id =  #{rearBrakeTypeId},
+			</if>
+                  <if test="parkingBrakeTypeId !=null">
+			    parking_brake_type_id =  #{parkingBrakeTypeId},
+			</if>
+                  <if test="tireId !=null">
+			    tire_id =  #{tireId},
+			</if>
+                  <if test="spareTireTypeId !=null">
+			    spare_tire_type_id =  #{spareTireTypeId},
+			</if>
+                  <if test="tireFront !=null and tireFront!=''">
+			    tire_front =  #{tireFront},
+			</if>
+                  <if test="tireRear !=null and tireRear!=''">
+			    tire_rear =  #{tireRear},
+			</if>
+                  <if test="spareTire !=null and spareTire!=''">
+			    spare_tire =  #{spareTire},
+			</if>
+                  <if test="multiMediaTypeId !=null">
+			    multi_media_type_id =  #{multiMediaTypeId},
+			</if>
+                  <if test="speakerNumberId !=null">
+			    speaker_number_id =  #{speakerNumberId},
+			</if>
+                  <if test="seatReclineId !=null">
+			    seat_recline_id =  #{seatReclineId},
+			</if>
+                  <if test="wheelAdjustTypeId !=null">
+			    wheel_adjust_type_id =  #{wheelAdjustTypeId},
+			</if>
+                  <if test="babySeatId !=null">
+			    baby_seat_id =  #{babySeatId},
+			</if>
+                  <if test="airconControlTypeId !=null">
+			    aircon_control_type_id =  #{airconControlTypeId},
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+			    create_time =  #{createTime},
+			</if>
+                  <if test="updateTime !=null and updateTime!=''">
+			    update_time =  #{updateTime},
+			</if>
+                  <if test="createUserId !=null">
+			    create_user_id =  #{createUserId},
+			</if>
+                  <if test="updateUserId !=null">
+			    update_user_id =  #{updateUserId},
+			</if>
+                  <if test="emissionsId !=null">
+			    emissions_id =  #{emissionsId},
+			</if>
+                  <if test="emissionsLocalId !=null">
+			    emissions_local_id =  #{emissionsLocalId},
+			</if>
+                  <if test="isValid !=null">
+			    is_valid =  #{isValid},
+			</if>
+                  <if test="isAttention !=null">
+			    is_attention =  #{isAttention},
+			</if>
+                  <if test="intakeId !=null">
+			    intake_id =  #{intakeId},
+			</if>
+                  <if test="roofId !=null">
+			    roof_id =  #{roofId},
+			</if>
+                  <if test="isHatchback !=null">
+			    is_hatchback =  #{isHatchback},
+			</if>
+                  <if test="isTurbo !=null">
+			    is_turbo =  #{isTurbo},
+			</if>
+                  <if test="isdel !=null">
+			    isdel =  #{isdel},
+			</if>
+                  <if test="simpleName !=null and simpleName!=''">
+			    simple_name =  #{simpleName},
+			</if>
+                  <if test="isShow !=null">
+			    is_show =  #{isShow},
+			</if>
+                  <if test="newPrice !=null">
+			    new_price =  #{newPrice},
+			</if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+			    revise_time =  #{reviseTime},
+			</if>
+                  <if test="operateTime !=null and operateTime!=''">
+			    operate_time =  #{operateTime},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarModelSimple" parameterType="com.carvin.entity.CarModelSimple">
+		delete from car_model_simple 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="brandId !=null">
+				and brand_id =  #{brandId}
+			</if>
+                  <if test="mfrsId !=null">
+				and mfrs_id =  #{mfrsId}
+			</if>
+                  <if test="seriesId !=null">
+				and series_id =  #{seriesId}
+			</if>
+                  <if test="subName !=null and subName!=''">
+				and sub_name =  #{subName}
+			</if>
+                  <if test="modelName !=null and modelName!=''">
+				and model_name =  #{modelName}
+			</if>
+                  <if test="extraName !=null and extraName!=''">
+				and extra_name =  #{extraName}
+			</if>
+                  <if test="name !=null and name!=''">
+				and name =  #{name}
+			</if>
+                  <if test="fullName !=null and fullName!=''">
+				and full_name =  #{fullName}
+			</if>
+                  <if test="eName !=null and eName!=''">
+				and e_name =  #{eName}
+			</if>
+                  <if test="alias !=null and alias!=''">
+				and alias =  #{alias}
+			</if>
+                  <if test="versionYear !=null and versionYear!=''">
+				and version_year =  #{versionYear}
+			</if>
+                  <if test="versionDate !=null and versionDate!=''">
+				and version_date =  #{versionDate}
+			</if>
+                  <if test="productionDate !=null and productionDate!=''">
+				and production_date =  #{productionDate}
+			</if>
+                  <if test="endDate !=null and endDate!=''">
+				and end_date =  #{endDate}
+			</if>
+                  <if test="productionYear !=null and productionYear!=''">
+				and production_year =  #{productionYear}
+			</if>
+                  <if test="levelId !=null">
+				and level_id =  #{levelId}
+			</if>
+                  <if test="catId !=null and catId!=''">
+				and cat_id =  #{catId}
+			</if>
+                  <if test="redcodde !=null and redcodde!=''">
+				and redcodde =  #{redcodde}
+			</if>
+                  <if test="photo !=null and photo!=''">
+				and photo =  #{photo}
+			</if>
+                  <if test="intro !=null and intro!=''">
+				and intro =  #{intro}
+			</if>
+                  <if test="displacement !=null">
+				and displacement =  #{displacement}
+			</if>
+                  <if test="displacementExact !=null">
+				and displacement_exact =  #{displacementExact}
+			</if>
+                  <if test="maxPowerPs !=null">
+				and max_power_ps =  #{maxPowerPs}
+			</if>
+                  <if test="maxPowerKw !=null">
+				and max_power_kw =  #{maxPowerKw}
+			</if>
+                  <if test="maxPowerRpm !=null and maxPowerRpm!=''">
+				and max_power_rpm =  #{maxPowerRpm}
+			</if>
+                  <if test="maxTorqueNm !=null">
+				and max_torque_nm =  #{maxTorqueNm}
+			</if>
+                  <if test="maxTorqueRpm !=null and maxTorqueRpm!=''">
+				and max_torque_rpm =  #{maxTorqueRpm}
+			</if>
+                  <if test="transmissionTypeId !=null">
+				and transmission_type_id =  #{transmissionTypeId}
+			</if>
+                  <if test="transmissionTypeName !=null and transmissionTypeName!=''">
+				and transmission_type_name =  #{transmissionTypeName}
+			</if>
+                  <if test="transmissionShiftPssition !=null">
+				and transmission_shift_pssition =  #{transmissionShiftPssition}
+			</if>
+                  <if test="length !=null">
+				and length =  #{length}
+			</if>
+                  <if test="width !=null">
+				and width =  #{width}
+			</if>
+                  <if test="height !=null">
+				and height =  #{height}
+			</if>
+                  <if test="wheelbase !=null">
+				and wheelbase =  #{wheelbase}
+			</if>
+                  <if test="frontWheelspan !=null">
+				and front_wheelspan =  #{frontWheelspan}
+			</if>
+                  <if test="rearWheelspan !=null">
+				and rear_wheelspan =  #{rearWheelspan}
+			</if>
+                  <if test="carBodyTypeId !=null">
+				and car_body_type_id =  #{carBodyTypeId}
+			</if>
+                  <if test="carBodyStructureId !=null">
+				and car_body_structure_id =  #{carBodyStructureId}
+			</if>
+                  <if test="maxSpeed !=null">
+				and max_speed =  #{maxSpeed}
+			</if>
+                  <if test="speedupOfficial !=null">
+				and speedup_official =  #{speedupOfficial}
+			</if>
+                  <if test="speedupTest !=null">
+				and speedup_test =  #{speedupTest}
+			</if>
+                  <if test="braking !=null">
+				and braking =  #{braking}
+			</if>
+                  <if test="fuelConsumptionOfficial !=null">
+				and fuel_consumption_official =  #{fuelConsumptionOfficial}
+			</if>
+                  <if test="fuelConsumptionTest !=null">
+				and fuel_consumption_test =  #{fuelConsumptionTest}
+			</if>
+                  <if test="warranty !=null and warranty!=''">
+				and warranty =  #{warranty}
+			</if>
+                  <if test="weight !=null">
+				and weight =  #{weight}
+			</if>
+                  <if test="weightRange !=null">
+				and weight_range =  #{weightRange}
+			</if>
+                  <if test="weightTotal !=null">
+				and weight_total =  #{weightTotal}
+			</if>
+                  <if test="doors !=null">
+				and doors =  #{doors}
+			</if>
+                  <if test="seats !=null">
+				and seats =  #{seats}
+			</if>
+                  <if test="fuelTank !=null">
+				and fuel_tank =  #{fuelTank}
+			</if>
+                  <if test="trunk !=null">
+				and trunk =  #{trunk}
+			</if>
+                  <if test="trunkTotal !=null">
+				and trunk_total =  #{trunkTotal}
+			</if>
+                  <if test="dragCoefficient !=null and dragCoefficient!=''">
+				and drag_coefficient =  #{dragCoefficient}
+			</if>
+                  <if test="carFuelTypeId !=null">
+				and car_fuel_type_id =  #{carFuelTypeId}
+			</if>
+                  <if test="carFuelNumberId !=null">
+				and car_fuel_number_id =  #{carFuelNumberId}
+			</if>
+                  <if test="engineModelName !=null and engineModelName!=''">
+				and engine_model_name =  #{engineModelName}
+			</if>
+                  <if test="engineId !=null">
+				and engine_id =  #{engineId}
+			</if>
+                  <if test="engineDirection !=null">
+				and engine_direction =  #{engineDirection}
+			</if>
+                  <if test="enginePosition !=null">
+				and engine_position =  #{enginePosition}
+			</if>
+                  <if test="compression !=null and compression!=''">
+				and compression =  #{compression}
+			</if>
+                  <if test="cylinder !=null">
+				and cylinder =  #{cylinder}
+			</if>
+                  <if test="drivingModeId !=null">
+				and driving_mode_id =  #{drivingModeId}
+			</if>
+                  <if test="fourWheelDriveTypeId !=null">
+				and four_wheel_drive_type_id =  #{fourWheelDriveTypeId}
+			</if>
+                  <if test="frontSuspensionTypeId !=null">
+				and front_suspension_type_id =  #{frontSuspensionTypeId}
+			</if>
+                  <if test="rearSuspensionTypeId !=null">
+				and rear_suspension_type_id =  #{rearSuspensionTypeId}
+			</if>
+                  <if test="centerDifferentialTypeId !=null">
+				and center_differential_type_id =  #{centerDifferentialTypeId}
+			</if>
+                  <if test="boostTypeId !=null">
+				and boost_type_id =  #{boostTypeId}
+			</if>
+                  <if test="carStructureId !=null">
+				and car_structure_id =  #{carStructureId}
+			</if>
+                  <if test="frontBrakeTypeId !=null">
+				and front_brake_type_id =  #{frontBrakeTypeId}
+			</if>
+                  <if test="rearBrakeTypeId !=null">
+				and rear_brake_type_id =  #{rearBrakeTypeId}
+			</if>
+                  <if test="parkingBrakeTypeId !=null">
+				and parking_brake_type_id =  #{parkingBrakeTypeId}
+			</if>
+                  <if test="tireId !=null">
+				and tire_id =  #{tireId}
+			</if>
+                  <if test="spareTireTypeId !=null">
+				and spare_tire_type_id =  #{spareTireTypeId}
+			</if>
+                  <if test="tireFront !=null and tireFront!=''">
+				and tire_front =  #{tireFront}
+			</if>
+                  <if test="tireRear !=null and tireRear!=''">
+				and tire_rear =  #{tireRear}
+			</if>
+                  <if test="spareTire !=null and spareTire!=''">
+				and spare_tire =  #{spareTire}
+			</if>
+                  <if test="multiMediaTypeId !=null">
+				and multi_media_type_id =  #{multiMediaTypeId}
+			</if>
+                  <if test="speakerNumberId !=null">
+				and speaker_number_id =  #{speakerNumberId}
+			</if>
+                  <if test="seatReclineId !=null">
+				and seat_recline_id =  #{seatReclineId}
+			</if>
+                  <if test="wheelAdjustTypeId !=null">
+				and wheel_adjust_type_id =  #{wheelAdjustTypeId}
+			</if>
+                  <if test="babySeatId !=null">
+				and baby_seat_id =  #{babySeatId}
+			</if>
+                  <if test="airconControlTypeId !=null">
+				and aircon_control_type_id =  #{airconControlTypeId}
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+				and create_time =  #{createTime}
+			</if>
+                  <if test="updateTime !=null and updateTime!=''">
+				and update_time =  #{updateTime}
+			</if>
+                  <if test="createUserId !=null">
+				and create_user_id =  #{createUserId}
+			</if>
+                  <if test="updateUserId !=null">
+				and update_user_id =  #{updateUserId}
+			</if>
+                  <if test="emissionsId !=null">
+				and emissions_id =  #{emissionsId}
+			</if>
+                  <if test="emissionsLocalId !=null">
+				and emissions_local_id =  #{emissionsLocalId}
+			</if>
+                  <if test="isValid !=null">
+				and is_valid =  #{isValid}
+			</if>
+                  <if test="isAttention !=null">
+				and is_attention =  #{isAttention}
+			</if>
+                  <if test="intakeId !=null">
+				and intake_id =  #{intakeId}
+			</if>
+                  <if test="roofId !=null">
+				and roof_id =  #{roofId}
+			</if>
+                  <if test="isHatchback !=null">
+				and is_hatchback =  #{isHatchback}
+			</if>
+                  <if test="isTurbo !=null">
+				and is_turbo =  #{isTurbo}
+			</if>
+                  <if test="isdel !=null">
+				and isdel =  #{isdel}
+			</if>
+                  <if test="simpleName !=null and simpleName!=''">
+				and simple_name =  #{simpleName}
+			</if>
+                  <if test="isShow !=null">
+				and is_show =  #{isShow}
+			</if>
+                  <if test="newPrice !=null">
+				and new_price =  #{newPrice}
+			</if>
+                  <if test="reviseTime !=null and reviseTime!=''">
+				and revise_time =  #{reviseTime}
+			</if>
+                  <if test="operateTime !=null and operateTime!=''">
+				and operate_time =  #{operateTime}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

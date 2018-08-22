@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.VinMapper">
+	     <!-- 结果对应-->
+	<resultMap id="VinMap" type="com.carvin.entity.Vin">
+		   <result property="id" column="id" /> <!-- -->
+		   <result property="clsbdh" column="clsbdh" /> <!-- -->
+		   <result property="clxh" column="clxh" /> <!-- -->
+		   <result property="wzhgzbh" column="wzhgzbh" /> <!-- -->
+		   <result property="fzrq" column="fzrq" /> <!-- -->
+		   <result property="csys" column="csys" /> <!-- -->
+		   <result property="fdjh" column="fdjh" /> <!-- -->
+		   <result property="pfbz" column="pfbz" /> <!-- -->
+		   <result property="pl" column="pl" /> <!-- -->
+		   <result property="gl" column="gl" /> <!-- -->
+		   <result property="clzzrq" column="clzzrq" /> <!-- -->
+		   <result property="bz" column="bz" /> <!-- -->
+		   <result property="createtime" column="createtime" /> <!-- -->
+		   <result property="vehiclestatus" column="vehicle_status" /> <!-- -->
+		   <result property="emissionsid" column="emissions_id" /> <!-- 1:国I，2:国II 3:国III 4 国IV 5:国V-->
+	</resultMap>
+	
+	
+	<sql id="VinColumns">
+		  id, clsbdh, clxh, wzhgzbh, fzrq, csys, fdjh, pfbz, pl, gl, clzzrq, bz, createtime, vehicle_status, emissions_id
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageVin" resultMap="VinMap" parameterType="com.carvin.entity.Vin">
+		select
+		<include refid="VinColumns" />
+		from ${vintablename} 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="clsbdh !=null and clsbdh!=''">
+			           and clsbdh=#{clsbdh}
+			      </if>
+                  <if test="clxh !=null and clxh!=''">
+			           and clxh=#{clxh}
+			      </if>
+                  <if test="wzhgzbh !=null and wzhgzbh!=''">
+			           and wzhgzbh=#{wzhgzbh}
+			      </if>
+                  <if test="fzrq !=null and fzrq!=''">
+			           and fzrq=#{fzrq}
+			      </if>
+                  <if test="csys !=null and csys!=''">
+			           and csys=#{csys}
+			      </if>
+                  <if test="fdjh !=null and fdjh!=''">
+			           and fdjh=#{fdjh}
+			      </if>
+                  <if test="pfbz !=null and pfbz!=''">
+			           and pfbz=#{pfbz}
+			      </if>
+                  <if test="pl !=null and pl!=''">
+			           and pl=#{pl}
+			      </if>
+                  <if test="gl !=null and gl!=''">
+			           and gl=#{gl}
+			      </if>
+                  <if test="clzzrq !=null and clzzrq!=''">
+			           and clzzrq=#{clzzrq}
+			      </if>
+                  <if test="bz !=null and bz!=''">
+			           and bz=#{bz}
+			      </if>
+                  <if test="createtime !=null and createtime!=''">
+			           and createtime=#{createtime}
+			      </if>
+                  <if test="vehiclestatus !=null and vehiclestatus!=''">
+			           and vehicle_status=#{vehiclestatus}
+			      </if>
+                  <if test="emissionsid !=null">
+			           and emissions_id=#{emissionsid}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询vin的数量-->
+	<select id="getVinCount" parameterType="com.carvin.entity.Vin" resultType="Integer">
+		select count(*) from ${vintablename}
+	</select>
+	
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.Vin" useGeneratedKeys="true" keyProperty="id">
+		insert into ${vintablename}
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="clsbdh !=null and clsbdh!=''">
+		      clsbdh,
+		    </if>
+                  <if test="clxh !=null and clxh!=''">
+		      clxh,
+		    </if>
+                  <if test="wzhgzbh !=null and wzhgzbh!=''">
+		      wzhgzbh,
+		    </if>
+                  <if test="fzrq !=null and fzrq!=''">
+		      fzrq,
+		    </if>
+                  <if test="csys !=null and csys!=''">
+		      csys,
+		    </if>
+                  <if test="fdjh !=null and fdjh!=''">
+		      fdjh,
+		    </if>
+                  <if test="pfbz !=null and pfbz!=''">
+		      pfbz,
+		    </if>
+                  <if test="pl !=null and pl!=''">
+		      pl,
+		    </if>
+                  <if test="gl !=null and gl!=''">
+		      gl,
+		    </if>
+                  <if test="clzzrq !=null and clzzrq!=''">
+		      clzzrq,
+		    </if>
+                  <if test="bz !=null and bz!=''">
+		      bz,
+		    </if>
+                  <if test="createtime !=null and createtime!=''">
+		      createtime,
+		    </if>
+                  <if test="vehiclestatus !=null and vehiclestatus!=''">
+		      vehicle_status,
+		    </if>
+                  <if test="emissionsid !=null">
+		      emissions_id,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		    <if test="clsbdh !=null and clsbdh!=''">
+		     #{clsbdh},
+		    </if>
+		    <if test="clxh !=null and clxh!=''">
+		     #{clxh},
+		    </if>
+		    <if test="wzhgzbh !=null and wzhgzbh!=''">
+		     #{wzhgzbh},
+		    </if>
+		    <if test="fzrq !=null and fzrq!=''">
+		     #{fzrq},
+		    </if>
+		    <if test="csys !=null and csys!=''">
+		     #{csys},
+		    </if>
+		    <if test="fdjh !=null and fdjh!=''">
+		     #{fdjh},
+		    </if>
+		    <if test="pfbz !=null and pfbz!=''">
+		     #{pfbz},
+		    </if>
+		    <if test="pl !=null and pl!=''">
+		     #{pl},
+		    </if>
+		    <if test="gl !=null and gl!=''">
+		     #{gl},
+		    </if>
+		    <if test="clzzrq !=null and clzzrq!=''">
+		     #{clzzrq},
+		    </if>
+		    <if test="bz !=null and bz!=''">
+		     #{bz},
+		    </if>
+		    <if test="createtime !=null and createtime!=''">
+		     #{createtime},
+		    </if>
+		    <if test="vehiclestatus !=null and vehiclestatus!=''">
+		     #{vehiclestatus},
+		    </if>
+		     <if test="emissionsid !=null">
+		     #{emissionsid},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getVinById" parameterType="com.carvin.entity.Vin" resultMap="VinMap">
+		select 
+		<include refid="VinColumns" /> 
+		from ${vintablename} where 
+		  	ID=#{iD}
+	</select>
+	
+	<!-- 根据条件查询 vin  -->
+	<select id="listVin" resultMap="VinMap" parameterType="com.carvin.entity.Vin">
+		select
+		<include refid="VinColumns" />
+		from ${vintablename} 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="clsbdh !=null and clsbdh!=''">
+				and clsbdh=#{clsbdh}
+			</if>
+                  <if test="clxh !=null and clxh!=''">
+				and clxh=#{clxh}
+			</if>
+                  <if test="wzhgzbh !=null and wzhgzbh!=''">
+				and wzhgzbh=#{wzhgzbh}
+			</if>
+                  <if test="fzrq !=null and fzrq!=''">
+				and fzrq=#{fzrq}
+			</if>
+                  <if test="csys !=null and csys!=''">
+				and csys=#{csys}
+			</if>
+                  <if test="fdjh !=null and fdjh!=''">
+				and fdjh=#{fdjh}
+			</if>
+                  <if test="pfbz !=null and pfbz!=''">
+				and pfbz=#{pfbz}
+			</if>
+                  <if test="pl !=null and pl!=''">
+				and pl=#{pl}
+			</if>
+                  <if test="gl !=null and gl!=''">
+				and gl=#{gl}
+			</if>
+                  <if test="clzzrq !=null and clzzrq!=''">
+				and clzzrq=#{clzzrq}
+			</if>
+                  <if test="bz !=null and bz!=''">
+				and bz=#{bz}
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+				and createtime=#{createtime}
+			</if>
+                  <if test="vehiclestatus !=null and vehiclestatus!=''">
+				and vehicle_status=#{vehiclestatus}
+			</if>
+                  <if test="emissionsid !=null">
+				and emissions_id=#{emissionsid}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateVin" parameterType="com.carvin.entity.Vin">
+		UPDATE ${vintablename} 
+		SET
+		id=#{id}, clsbdh=#{clsbdh}, clxh=#{clxh}, wzhgzbh=#{wzhgzbh}, fzrq=#{fzrq}, csys=#{csys}, fdjh=#{fdjh}, pfbz=#{pfbz}, pl=#{pl}, gl=#{gl}, clzzrq=#{clzzrq}, bz=#{bz}, createtime=#{createtime}, vehicle_status=#{vehiclestatus}, emissions_id=#{emissionsid}
+		WHERE
+		ID=#{iD}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.Vin" >
+	  UPDATE ${vintablename} 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="clsbdh !=null and clsbdh!=''">
+			    clsbdh =  #{clsbdh},
+			</if>
+                  <if test="clxh !=null and clxh!=''">
+			    clxh =  #{clxh},
+			</if>
+                  <if test="wzhgzbh !=null and wzhgzbh!=''">
+			    wzhgzbh =  #{wzhgzbh},
+			</if>
+                  <if test="fzrq !=null and fzrq!=''">
+			    fzrq =  #{fzrq},
+			</if>
+                  <if test="csys !=null and csys!=''">
+			    csys =  #{csys},
+			</if>
+                  <if test="fdjh !=null and fdjh!=''">
+			    fdjh =  #{fdjh},
+			</if>
+                  <if test="pfbz !=null and pfbz!=''">
+			    pfbz =  #{pfbz},
+			</if>
+                  <if test="pl !=null and pl!=''">
+			    pl =  #{pl},
+			</if>
+                  <if test="gl !=null and gl!=''">
+			    gl =  #{gl},
+			</if>
+                  <if test="clzzrq !=null and clzzrq!=''">
+			    clzzrq =  #{clzzrq},
+			</if>
+                  <if test="bz !=null and bz!=''">
+			    bz =  #{bz},
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+			    createtime =  #{createtime},
+			</if>
+                  <if test="vehiclestatus !=null and vehiclestatus!=''">
+			    vehicle_status =  #{vehiclestatus},
+			</if>
+                  <if test="emissionsid !=null">
+			    emissions_id =  #{emissionsid},
+			</if>
+	   </set>
+		where
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteVin" parameterType="com.carvin.entity.Vin">
+		delete from ${vintablename} 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="clsbdh !=null and clsbdh!=''">
+				and clsbdh =  #{clsbdh}
+			</if>
+                  <if test="clxh !=null and clxh!=''">
+				and clxh =  #{clxh}
+			</if>
+                  <if test="wzhgzbh !=null and wzhgzbh!=''">
+				and wzhgzbh =  #{wzhgzbh}
+			</if>
+                  <if test="fzrq !=null and fzrq!=''">
+				and fzrq =  #{fzrq}
+			</if>
+                  <if test="csys !=null and csys!=''">
+				and csys =  #{csys}
+			</if>
+                  <if test="fdjh !=null and fdjh!=''">
+				and fdjh =  #{fdjh}
+			</if>
+                  <if test="pfbz !=null and pfbz!=''">
+				and pfbz =  #{pfbz}
+			</if>
+                  <if test="pl !=null and pl!=''">
+				and pl =  #{pl}
+			</if>
+                  <if test="gl !=null and gl!=''">
+				and gl =  #{gl}
+			</if>
+                  <if test="clzzrq !=null and clzzrq!=''">
+				and clzzrq =  #{clzzrq}
+			</if>
+                  <if test="bz !=null and bz!=''">
+				and bz =  #{bz}
+			</if>
+                  <if test="createtime !=null and createtime!=''">
+				and createtime =  #{createtime}
+			</if>
+                  <if test="vehiclestatus !=null and vehiclestatus!=''">
+				and vehicle_status =  #{vehiclestatus}
+			</if>
+                  <if test="emissionsid !=null">
+				and emissions_id =  #{emissionsid}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

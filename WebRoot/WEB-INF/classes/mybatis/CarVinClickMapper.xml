@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarVinClickMapper">
+	     <!-- 结果对应-->
+	<resultMap id="CarVinClickMap" type="com.carvin.entity.CarVinClick">
+		   <result property="id" column="id" /> <!-- -->
+		   <result property="vin" column="vin" /> <!-- -->
+		   <result property="gbm" column="gbm" /> <!-- -->
+		   <result property="simpleId" column="simple_id" /> <!-- -->
+		   <result property="createTime" column="create_time" /> <!-- -->
+	</resultMap>
+	
+	
+	<sql id="CarVinClickColumns">
+		  id, vin, gbm, simple_id, create_time
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarVinClick" resultMap="CarVinClickMap" 
+	parameterType="com.carvin.entity.CarVinClick">
+		select
+		<include refid="CarVinClickColumns" />
+		from car_vin_click 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="vin !=null and vin!=''">
+			           and vin=#{vin}
+			      </if>
+                  <if test="gbm !=null and gbm!=''">
+			           and gbm=#{gbm}
+			      </if>
+                  <if test="simpleId !=null">
+			           and simple_id=#{simpleId}
+			      </if>
+                  <if test="createTime !=null">
+			           and create_time=#{createTime}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_vin_click的数量-->
+	<select id="getCarVinClickCount" resultType="Integer">
+		select count(*)
+		from car_vin_click
+	</select>
+	
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarVinClick" useGeneratedKeys="true" keyProperty="id">
+		insert into car_vin_click
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="vin !=null and vin!=''">
+		      vin,
+		    </if>
+                  <if test="gbm !=null and gbm!=''">
+		      gbm,
+		    </if>
+                  <if test="simpleId !=null">
+		      simple_id,
+		    </if>
+                  <if test="createTime !=null">
+		      create_time,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		    <if test="vin !=null and vin!=''">
+		     #{vin},
+		    </if>
+		    <if test="gbm !=null and gbm!=''">
+		     #{gbm},
+		    </if>
+		     <if test="simpleId !=null">
+		     #{simpleId},
+		    </if>
+		     <if test="createTime !=null">
+		     #{createTime},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarVinClickById" parameterType="Integer" resultMap="CarVinClickMap">
+		select 
+		<include refid="CarVinClickColumns" /> 
+		from car_vin_click where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 car_vin_click  -->
+	<select id="listCarVinClick" resultMap="CarVinClickMap" parameterType="com.carvin.entity.CarVinClick">
+		select
+		<include refid="CarVinClickColumns" />
+		from car_vin_click 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="vin !=null and vin!=''">
+				and vin=#{vin}
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+				and gbm=#{gbm}
+			</if>
+                  <if test="simpleId !=null">
+				and simple_id=#{simpleId}
+			</if>
+                  <if test="createTime !=null">
+				and create_time=#{createTime}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarVinClick" parameterType="com.carvin.entity.CarVinClick">
+		UPDATE car_vin_click 
+		SET
+		id=#{id}, vin=#{vin}, gbm=#{gbm}, simple_id=#{simpleId}, create_time=#{createTime}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarVinClick" >
+	  UPDATE car_vin_click 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="vin !=null and vin!=''">
+			    vin =  #{vin},
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+			    gbm =  #{gbm},
+			</if>
+                  <if test="simpleId !=null">
+			    simple_id =  #{simpleId},
+			</if>
+                  <if test="createTime !=null">
+			    create_time =  #{createTime},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarVinClick" parameterType="com.carvin.entity.CarVinClick">
+		delete from car_vin_click 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="vin !=null and vin!=''">
+				and vin =  #{vin}
+			</if>
+                  <if test="gbm !=null and gbm!=''">
+				and gbm =  #{gbm}
+			</if>
+                  <if test="simpleId !=null">
+				and simple_id =  #{simpleId}
+			</if>
+                  <if test="createTime !=null">
+				and create_time =  #{createTime}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>

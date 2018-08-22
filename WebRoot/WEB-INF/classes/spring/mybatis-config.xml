@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+       	<!-- 别名-->
+<!--        	<package name="com.carvin.entity"/> -->
+        <!-- 分页 -->
+        <typeAlias type="com.framework.util.Page" alias="Page"/>
+    </typeAliases>
+	<plugins>
+		<plugin interceptor="com.framework.plugin.PagePlugin">
+			<property name="dialect" value="mysql"/>
+			<property name="pageSqlId" value=".*listPage.*"/>
+		</plugin>
+	</plugins>
+	
+
+</configuration>

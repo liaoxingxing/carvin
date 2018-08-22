@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carvin.mapper.CarMfrsMapper">
+	     <!-- 结果对应-->
+	<resultMap id="CarMfrsMap" type="com.carvin.entity.CarMfrs">
+		   <result property="id" column="id" /> <!-- -->
+		   <result property="brandId" column="brand_id" /> <!-- 品牌id-->
+		   <result property="name" column="name" /> <!-- 厂商名称-->
+		   <result property="iautosName" column="iautos_name" /> <!-- 厂商名称 （优化）-->
+		   <result property="fullname" column="fullname" /> <!-- 全称-->
+		   <result property="website" column="website" /> <!-- 网址-->
+		   <result property="alias" column="alias" /> <!-- 别名-->
+		   <result property="logo" column="logo" /> <!-- -->
+		   <result property="countryId" column="country_id" /> <!-- 国家id-->
+		   <result property="userId" column="user_id" /> <!-- 创建人id-->
+		   <result property="isImport" column="is_import" /> <!-- -->
+		   <result property="heat" column="heat" /> <!-- -->
+		   <result property="createTime" column="create_time" /> <!-- -->
+		   <result property="isdel" column="isdel" /> <!-- -->
+	</resultMap>
+	
+	
+	<sql id="CarMfrsColumns">
+		  id, brand_id, name, iautos_name, fullname, website, alias, logo, country_id, user_id, is_import, heat, create_time, isdel
+    </sql>
+	
+    <!-- 分页条件查询-->
+	<select id="listPageCarMfrs" resultMap="CarMfrsMap" 
+	parameterType="com.carvin.entity.CarMfrs">
+		select
+		<include refid="CarMfrsColumns" />
+		from car_mfrs 
+		 <where>
+                  <if test="id !=null">
+			           and id=#{id}
+			      </if>
+                  <if test="brandId !=null">
+			           and brand_id=#{brandId}
+			      </if>
+                  <if test="name !=null and name!=''">
+			           and name=#{name}
+			      </if>
+                  <if test="iautosName !=null and iautosName!=''">
+			           and iautos_name=#{iautosName}
+			      </if>
+                  <if test="fullname !=null and fullname!=''">
+			           and fullname=#{fullname}
+			      </if>
+                  <if test="website !=null and website!=''">
+			           and website=#{website}
+			      </if>
+                  <if test="alias !=null and alias!=''">
+			           and alias=#{alias}
+			      </if>
+                  <if test="logo !=null and logo!=''">
+			           and logo=#{logo}
+			      </if>
+                  <if test="countryId !=null">
+			           and country_id=#{countryId}
+			      </if>
+                  <if test="userId !=null">
+			           and user_id=#{userId}
+			      </if>
+                  <if test="isImport !=null">
+			           and is_import=#{isImport}
+			      </if>
+                  <if test="heat !=null">
+			           and heat=#{heat}
+			      </if>
+                  <if test="createTime !=null and createTime!=''">
+			           and create_time=#{createTime}
+			      </if>
+                  <if test="isdel !=null">
+			           and isdel=#{isdel}
+			      </if>
+		</where>
+	</select>
+	
+	<!-- 查询car_mfrs的数量-->
+	<select id="getCarMfrsCount" resultType="Integer">
+		select count(*)
+		from car_mfrs
+	</select>
+	
+	<!-- 有条件的插入 -->
+	<insert id="insertSelective" parameterType="com.carvin.entity.CarMfrs" useGeneratedKeys="true" keyProperty="id">
+		insert into car_mfrs
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+                  <if test="id !=null">
+		      id,
+		    </if>
+                  <if test="brandId !=null">
+		      brand_id,
+		    </if>
+                  <if test="name !=null and name!=''">
+		      name,
+		    </if>
+                  <if test="iautosName !=null and iautosName!=''">
+		      iautos_name,
+		    </if>
+                  <if test="fullname !=null and fullname!=''">
+		      fullname,
+		    </if>
+                  <if test="website !=null and website!=''">
+		      website,
+		    </if>
+                  <if test="alias !=null and alias!=''">
+		      alias,
+		    </if>
+                  <if test="logo !=null and logo!=''">
+		      logo,
+		    </if>
+                  <if test="countryId !=null">
+		      country_id,
+		    </if>
+                  <if test="userId !=null">
+		      user_id,
+		    </if>
+                  <if test="isImport !=null">
+		      is_import,
+		    </if>
+                  <if test="heat !=null">
+		      heat,
+		    </if>
+                  <if test="createTime !=null and createTime!=''">
+		      create_time,
+		    </if>
+                  <if test="isdel !=null">
+		      isdel,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		     <if test="id !=null">
+		     #{id},
+		    </if>
+		     <if test="brandId !=null">
+		     #{brandId},
+		    </if>
+		    <if test="name !=null and name!=''">
+		     #{name},
+		    </if>
+		    <if test="iautosName !=null and iautosName!=''">
+		     #{iautosName},
+		    </if>
+		    <if test="fullname !=null and fullname!=''">
+		     #{fullname},
+		    </if>
+		    <if test="website !=null and website!=''">
+		     #{website},
+		    </if>
+		    <if test="alias !=null and alias!=''">
+		     #{alias},
+		    </if>
+		    <if test="logo !=null and logo!=''">
+		     #{logo},
+		    </if>
+		     <if test="countryId !=null">
+		     #{countryId},
+		    </if>
+		     <if test="userId !=null">
+		     #{userId},
+		    </if>
+		     <if test="isImport !=null">
+		     #{isImport},
+		    </if>
+		     <if test="heat !=null">
+		     #{heat},
+		    </if>
+		    <if test="createTime !=null and createTime!=''">
+		     #{createTime},
+		    </if>
+		     <if test="isdel !=null">
+		     #{isdel},
+		    </if>
+		</trim>
+	</insert>	
+	
+	<!-- 根据主键查询(唯一)-->
+	<select id="getCarMfrsById" parameterType="Integer" resultMap="CarMfrsMap">
+		select 
+		<include refid="CarMfrsColumns" /> 
+		from car_mfrs where 
+		  	id=#{id}
+	</select>
+	
+	<!-- 根据条件查询 car_mfrs  -->
+	<select id="listCarMfrs" resultMap="CarMfrsMap" parameterType="com.carvin.entity.CarMfrs">
+		select
+		<include refid="CarMfrsColumns" />
+		from car_mfrs 
+		<where>
+                  <if test="id !=null">
+				and id=#{id}
+			</if>
+                  <if test="brandId !=null">
+				and brand_id=#{brandId}
+			</if>
+                  <if test="name !=null and name!=''">
+				and name=#{name}
+			</if>
+                  <if test="iautosName !=null and iautosName!=''">
+				and iautos_name=#{iautosName}
+			</if>
+                  <if test="fullname !=null and fullname!=''">
+				and fullname=#{fullname}
+			</if>
+                  <if test="website !=null and website!=''">
+				and website=#{website}
+			</if>
+                  <if test="alias !=null and alias!=''">
+				and alias=#{alias}
+			</if>
+                  <if test="logo !=null and logo!=''">
+				and logo=#{logo}
+			</if>
+                  <if test="countryId !=null">
+				and country_id=#{countryId}
+			</if>
+                  <if test="userId !=null">
+				and user_id=#{userId}
+			</if>
+                  <if test="isImport !=null">
+				and is_import=#{isImport}
+			</if>
+                  <if test="heat !=null">
+				and heat=#{heat}
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+				and create_time=#{createTime}
+			</if>
+                  <if test="isdel !=null">
+				and isdel=#{isdel}
+			</if>
+		</where>
+	</select>
+	
+	<!--更新  -->
+	<update id="updateCarMfrs" parameterType="com.carvin.entity.CarMfrs">
+		UPDATE car_mfrs 
+		SET
+		id=#{id}, brand_id=#{brandId}, name=#{name}, iautos_name=#{iautosName}, fullname=#{fullname}, website=#{website}, alias=#{alias}, logo=#{logo}, country_id=#{countryId}, user_id=#{userId}, is_import=#{isImport}, heat=#{heat}, create_time=#{createTime}, isdel=#{isdel}
+		WHERE
+		id=#{id}
+	</update>
+		<!--根据条件update  -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.carvin.entity.CarMfrs" >
+	  UPDATE car_mfrs 
+		<set>
+                  <if test="id !=null">
+			    id =  #{id},
+			</if>
+                  <if test="brandId !=null">
+			    brand_id =  #{brandId},
+			</if>
+                  <if test="name !=null and name!=''">
+			    name =  #{name},
+			</if>
+                  <if test="iautosName !=null and iautosName!=''">
+			    iautos_name =  #{iautosName},
+			</if>
+                  <if test="fullname !=null and fullname!=''">
+			    fullname =  #{fullname},
+			</if>
+                  <if test="website !=null and website!=''">
+			    website =  #{website},
+			</if>
+                  <if test="alias !=null and alias!=''">
+			    alias =  #{alias},
+			</if>
+                  <if test="logo !=null and logo!=''">
+			    logo =  #{logo},
+			</if>
+                  <if test="countryId !=null">
+			    country_id =  #{countryId},
+			</if>
+                  <if test="userId !=null">
+			    user_id =  #{userId},
+			</if>
+                  <if test="isImport !=null">
+			    is_import =  #{isImport},
+			</if>
+                  <if test="heat !=null">
+			    heat =  #{heat},
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+			    create_time =  #{createTime},
+			</if>
+                  <if test="isdel !=null">
+			    isdel =  #{isdel},
+			</if>
+	   </set>
+		WHERE
+	id=#{id}
+	</update>
+	
+	
+	<!--根据条件删除  -->
+	<delete id="deleteCarMfrs" parameterType="com.carvin.entity.CarMfrs">
+		delete from car_mfrs 
+	<where>
+                  <if test="id !=null">
+				and id =  #{id}
+			</if>
+                  <if test="brandId !=null">
+				and brand_id =  #{brandId}
+			</if>
+                  <if test="name !=null and name!=''">
+				and name =  #{name}
+			</if>
+                  <if test="iautosName !=null and iautosName!=''">
+				and iautos_name =  #{iautosName}
+			</if>
+                  <if test="fullname !=null and fullname!=''">
+				and fullname =  #{fullname}
+			</if>
+                  <if test="website !=null and website!=''">
+				and website =  #{website}
+			</if>
+                  <if test="alias !=null and alias!=''">
+				and alias =  #{alias}
+			</if>
+                  <if test="logo !=null and logo!=''">
+				and logo =  #{logo}
+			</if>
+                  <if test="countryId !=null">
+				and country_id =  #{countryId}
+			</if>
+                  <if test="userId !=null">
+				and user_id =  #{userId}
+			</if>
+                  <if test="isImport !=null">
+				and is_import =  #{isImport}
+			</if>
+                  <if test="heat !=null">
+				and heat =  #{heat}
+			</if>
+                  <if test="createTime !=null and createTime!=''">
+				and create_time =  #{createTime}
+			</if>
+                  <if test="isdel !=null">
+				and isdel =  #{isdel}
+			</if>
+		</where> 
+		 
+	</delete>
+</mapper>
